@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@700&display=swap');
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+main {
+  background-color:  #1F3757;
+  padding-top: 48px;
+}
+
+.score-panel {
+  width: 700px;
+  height: 150px;
+  border-radius: 15px;
+  margin: 0 auto 64px;
+  border: 1px solid rgba(255, 255, 255, 0.289199);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  margin: 18px 24px;
+  width: 676px;
+  height: 114px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-board {
+  width: 150px;
+  height: 114px;
+  background: #ffffff;
+  display: flex;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  width: 55px;
+  height: 83px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.score {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 2.5px;
+  color: #2A45C2;
+  text-transform: uppercase;
+}
+
+.num {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 64px;
+  text-align: center;
+  color: #565468;
+}
+
+.selection {
+  background: url('./images/bg-triangle.svg');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  width: 476px;
+  height: 430px;
+  margin: 0 auto;
+}
+
+.upper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.paper,
+.scissors,
+.rock {
+  width: 198px;
+  height: 203px;
+}
+
+.paper-oval {
+  width: 198px;
+  height: 203px;
+  background: #2A45C2;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
+  border-radius: 50%;
+}
+
+.paper-oval1 {
+  width: 198px;
+  height: 194px;
+  background: #4664F4;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paper-oval2 {
+  width: 152px;
+  height: 152px;
+  background: #BABFD4;
+  border-radius: 50%;
+}
+
+.paper-oval3 {
+  width: 152px;
+  height: 144px;
+  margin-top: 8px;  
+  background: linear-gradient(0deg, #F3F3F3 0%, #DADADA 98.34%); 
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scissors-oval {
+  width: 198px;
+  height: 203px;
+  background: #C76C1B;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
+  border-radius: 50%;
+}
+
+.scissors-oval1 {
+  width: 198px;
+  height: 194px;
+  background: #EB9F0E;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scissors-oval2 {
+  width: 152px;
+  height: 152px;
+  background: #BABFD4;
+  border-radius: 50%;
+}
+
+.scissors-oval3 {
+  width: 152px;
+  height: 144px;
+  margin-top: 8px;  
+  background: linear-gradient(0deg, #F3F3F3 0%, #DADADA 98.34%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rock-oval {
+  width: 198px;
+  height: 203px;
+  background: #9D1634;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
+  border-radius: 50%;
+}
+
+.rock-oval1 {
+  width: 198px;
+  height: 194px;
+  background: #DB2E4D;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rock-oval2 {
+  width: 152px;
+  height: 152px;
+  background: #BABFD4;
+  border-radius: 50%;
+}
+
+.rock-oval3 {
+  width: 152px;
+  height: 144px;
+  margin-top: 8px;  
+  background: linear-gradient(0deg, #F3F3F3 0%, #DADADA 98.34%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lower {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.btn {
+  margin-top: 4px;
+}
+
+button {
+  width: 128px;
+  height: 40px;
+  background: none;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  position: relative;
+  left: 1356px;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  letter-spacing: 2.5px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+}
+
+button:hover {
+  color: #3B4262;
+  background: #ffffff;
+  transition: 0.3s ease-in-out;
+}
