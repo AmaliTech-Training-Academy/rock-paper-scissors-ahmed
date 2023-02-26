@@ -143,6 +143,20 @@ main {
   align-items: center;
 }
 
+.paper-oval3 img{
+  width: 73px;
+  height: 86px;
+}
+
+.scissors-oval3 img {
+  height: 80px;
+}
+
+.rock-oval3 img {
+  width: 76px;
+  height: 76px;
+}
+
 .lower {
   display: flex;
   justify-content: center;
