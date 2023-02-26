@@ -1,42 +1,20 @@
-const openRules = document.getElementById('modal'); //opens rules modal
-const closeRules = document.getElementById('close'); //closes rules modal
-const overlay = documet.getElementsById('overlay');
-const modal = document.getElementById('modal'); // gets the modal
+const openRules = window.document.querySelector('[data-modal-target]'); //opens rules modal
+const closeRules = window.document.querySelector('[data-close-button]'); //closes rules modal
+const overlay = window.document.querySelector('#overlay');
+const modal = window.document.querySelector('#modal'); // gets the modal
 
-// openRules.addEventListener('click', () => {
-//   const modal = document.querySelector('#overlay')
-//   openModal(modal)
-// })
+openRules.addEventListener('click', () => openModal());
+closeRules.addEventListener('click', () => closeModal());
 
-// closeRules.addEventListener('click', () => {
-//   const modal = document.querySelector.closest('.close-rules')
-//   closeModal(modal)
-// })
-
-// const openModal = modal => {
-//   if(modal === null) 
-//     return 
-//     modal.classList.add('active')
-//     overlay.classList.add('active')
-// }
-
-// const closeModal = modal => {
-//   if(modal === null) 
-//     return 
-//     modal.classList.remove('active')
-//     overlay.classList.remove('active')
-// }
-
-openRules.onclick = () => {
-  modal.style.display = 'block';
+const openModal = () => {
+  if(modal === null) return 
+  modal.classList.add('active')
+  overlay.classList.add('active')
 }
 
-closeRules.onclick = () => {
-  close.style.display = 'none';
+const closeModal = () => {
+  if(modal === null) return 
+  modal.classList.remove('active')
+  overlay.classList.remove('active')
 }
 
-window.onclick = (event) => {
-  if (event.target === modal) {
-    modal.style.display = 'none';
-  }
-}

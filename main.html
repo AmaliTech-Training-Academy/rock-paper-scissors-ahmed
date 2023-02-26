@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="main.css">
+  <script defer src="modal.js"></script>
   <title>Rock Paper Scissors</title>
 </head>
 <body>
@@ -61,19 +62,19 @@
         </div>
       </div>
       <div class="btn">
-        <button id="modal">Rules</button>
-        <div class="modal active">
+        <button data-modal-target="#modal" id="addRules">Rules</button>
+        <div class="modal" id="modal">
           <div class="modal-header">
-            <span>Rules<img src="./images/icon-close.svg" alt="close" id="close"></span>
+            <span>Rules</span>
+            <img src="./images/icon-close.svg" alt="close" data-close-button>
           </div>
           <div class="modal-content">
-            <img src="./images/image-rules.svg" alt="">
+            <img src="./images/image-rules.svg" alt="rules">
           </div>
         </div>
-        <!-- <div class="active" id="overlay"></div> -->
       </div>
+      <div id="overlay"></div>
     </div>
   </main>
-  <script src="modal.js"></script>
 </body>
 </html>

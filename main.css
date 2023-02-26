@@ -7,7 +7,7 @@ body {
 }
 
 main {
-  background-color:  #1F3757;
+  background-color: #1F3757;
   padding-top: 48px;
 }
 
@@ -93,96 +93,36 @@ main {
   height: 203px;
 }
 
-.paper-oval {
-  width: 198px;
-  height: 203px;
-  background: #2A45C2;
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
-  border-radius: 50%;
-}
-
-.paper-oval1 {
-  width: 198px;
-  height: 194px;
-  background: #4664F4;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.paper-oval2 {
-  width: 152px;
-  height: 152px;
-  background: #BABFD4;
-  border-radius: 50%;
-}
-
-.paper-oval3 {
-  width: 152px;
-  height: 144px;
-  margin-top: 8px;  
-  background: linear-gradient(0deg, #F3F3F3 0%, #DADADA 98.34%); 
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.scissors-oval {
-  width: 198px;
-  height: 203px;
-  background: #C76C1B;
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
-  border-radius: 50%;
-}
-
-.scissors-oval1 {
-  width: 198px;
-  height: 194px;
-  background: #EB9F0E;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.scissors-oval2 {
-  width: 152px;
-  height: 152px;
-  background: #BABFD4;
-  border-radius: 50%;
-}
-
-.scissors-oval3 {
-  width: 152px;
-  height: 144px;
-  margin-top: 8px;  
-  background: linear-gradient(0deg, #F3F3F3 0%, #DADADA 98.34%);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+.paper-oval,
+.scissors-oval,
 .rock-oval {
   width: 198px;
   height: 203px;
-  background: #9D1634;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
   border-radius: 50%;
 }
 
+.paper-oval { background: #2A45C2 }
+.scissors-oval { background: #C76C1B }
+.rock-oval { background: #9D1634 }
+
+.paper-oval1,
+.scissors-oval1,
 .rock-oval1 {
   width: 198px;
   height: 194px;
-  background: #DB2E4D;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.paper-oval1 { background: #4664F4 }
+.scissors-oval1 { background: #EB9F0E }
+.rock-oval1 { background: #DB2E4D }
+
+.paper-oval2,
+.scissors-oval2,
 .rock-oval2 {
   width: 152px;
   height: 152px;
@@ -190,11 +130,13 @@ main {
   border-radius: 50%;
 }
 
+.paper-oval3,
+.scissors-oval3,
 .rock-oval3 {
   width: 152px;
   height: 144px;
   margin-top: 8px;  
-  background: linear-gradient(0deg, #F3F3F3 0%, #DADADA 98.34%);
+  background: linear-gradient(0deg, #F3F3F3 0%, #DADADA 98.34%); 
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -208,11 +150,9 @@ main {
   margin-top: 24px;
 }
 
-.btn {
-  margin-top: 4px;
-}
+.btn { margin-top: 4px }
 
-button {
+ button {
   width: 128px;
   height: 40px;
   background: none;
@@ -250,7 +190,6 @@ button:hover {
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
   border-radius: 8px;
   z-index: 10;
-  /* display: none;  */
 }
 
 .modal.active {
@@ -261,6 +200,9 @@ button:hover {
   width: 336.09px;
   height: 32px;
   margin: 32px auto 48px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .modal-header span {
@@ -270,12 +212,9 @@ button:hover {
   line-height: 32px;
   color: #3B4262;
   text-transform: uppercase;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
-.modal-header button {
+.modal-header img {
   width: 19.09px;
   height: 19.09px;
 }
@@ -287,7 +226,7 @@ button:hover {
   margin: 0 46px 32px 49px;
 }
 
-/* #overlay {
+#overlay {
   position: fixed;
   opacity: 0;
   top: 0;
@@ -295,11 +234,11 @@ button:hover {
   bottom: 0;
   left: 0;
   transition: .3s ease-in-out;
-  background: radial-gradient(134.34% 134.34% at 50% 0%, #1F3757 0%, #131537 100%);
+  background-color: rgba(0, 0, 0, .6);
   pointer-events: none;
 }
 
 #overlay.active {
   pointer-events: all;
   opacity: 1;
-} */
+}
