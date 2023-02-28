@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@700&display=swap');
 
+html {
+  overflow: hidden;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -9,10 +13,12 @@ body {
 main {
   background-color: #1F3757;
   padding-top: 48px;
+  overflow: hidden;
 }
 
 .score-panel {
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   height: 150px;
   border-radius: 15px;
   margin: 0 auto 64px;
@@ -24,11 +30,11 @@ main {
 
 .container {
   margin: 18px 24px;
-  width: 676px;
   height: 114px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .score-board {
@@ -111,6 +117,15 @@ main {
   margin: 0 auto;
 }
 
+.selection.selected {
+  width: 100%;
+  max-width: 700px;
+}
+
+.selection.selected .upper {
+  padding-right: 76.38px;
+}
+
 .upper {
   display: flex;
   justify-content: space-between;
@@ -125,22 +140,18 @@ main {
   position: relative;
 }
 
-.paper-oval,
-.scissors-oval,
-.rock-oval {
+.outer-oval {
   width: 198px;
   height: 203px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
   border-radius: 50%;
 }
 
-.paper-oval { background: #2A45C2 }
-.scissors-oval { background: #C76C1B }
-.rock-oval { background: #9D1634 }
+.outer-oval.paper { background: #2A45C2 }
+.outer-oval.scissors { background: #C76C1B }
+.outer-oval.rock { background: #9D1634 }
 
-.paper-oval1,
-.scissors-oval1,
-.rock-oval1 {
+.inner-oval1 {
   width: 198px;
   height: 194px;
   border-radius: 50%;
@@ -149,22 +160,18 @@ main {
   align-items: center;
 }
 
-.paper-oval1 { background: #4664F4 }
-.scissors-oval1 { background: #EB9F0E }
-.rock-oval1 { background: #DB2E4D }
+.inner-oval1.paper { background: #4664F4 }
+.inner-oval1.scissors { background: #EB9F0E }
+.inner-oval1.rock { background: #DB2E4D }
 
-.paper-oval2,
-.scissors-oval2,
-.rock-oval2 {
+.inner-oval2 {
   width: 152px;
   height: 152px;
   background: #BABFD4;
   border-radius: 50%;
 }
 
-.paper-oval3,
-.scissors-oval3,
-.rock-oval3 {
+.inner-oval3 {
   width: 152px;
   height: 144px;
   margin-top: 8px;  
@@ -175,16 +182,16 @@ main {
   align-items: center;
 }
 
-.paper-oval3 img{
+.inner-oval3.paper img{
   width: 73px;
   height: 86px;
 }
 
-.scissors-oval3 img {
+.inner-oval3.scissors img {
   height: 80px;
 }
 
-.rock-oval3 img {
+.inner-oval3.rock img {
   width: 76px;
   height: 76px;
 }
@@ -287,4 +294,18 @@ button:hover {
 #overlay.active {
   pointer-events: all;
   opacity: 1;
+}
+
+.pick {
+  display: flex;
+  justify-content: space-around;
+}
+
+.empty-circle {
+  width: 224.63px;
+  height: 224.63px;
+  background: rgba(0, 0, 0, 0.1);
+  display: none;
+  border-radius: 50%;
+  margin-top: 90px;
 }
