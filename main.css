@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@700&display=swap');
 
 html {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 body {
@@ -13,7 +13,7 @@ body {
 main {
   background-color: #1F3757;
   padding-top: 48px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .score-panel {
@@ -126,6 +126,16 @@ main {
   padding-right: 76.38px;
 }
 
+.selection.selected .lower {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column; */
+  width: 100%;
+  max-width: 700px;
+  background-image: red;
+}
+
 .upper {
   display: flex;
   justify-content: space-between;
@@ -196,12 +206,22 @@ main {
   height: 76px;
 }
 
-.lower {
+.lower{
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* transform: translate(50%); */
+  margin-top: 24px;
+  background-color: red;
+}
+
+/* .rock.active  {
   display: flex;
+  flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
-  margin-top: 24px;
-}
+  transform: translateX(70%);
+} */
 
 .btn { margin-top: 4px }
 
