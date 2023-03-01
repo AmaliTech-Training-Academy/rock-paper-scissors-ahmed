@@ -1,5 +1,3 @@
-
-//user selection
 const paper = window.document.querySelector('.paper'); 
 const outerOval = window.document.querySelectorAll('.outer-oval');
 const innerOval1 = window.document.querySelectorAll('.inner-oval1');
@@ -41,6 +39,7 @@ const selectedItemDim = [
   },
 ]
 
+//Resize and display elements after click
 const ovalResize = (item) => {
   const items = [paper, scissors, rock];
   const ovals = [outerOval, innerOval1, innerOval2, innerOval3];
@@ -61,11 +60,26 @@ const ovalResize = (item) => {
     ovals[index][item].style.height = currentDim.height;
   });
 
-  innerImg[item].style.width = '141.87px';
-  innerImg[item].style.height = '141.87px';
+  // innerImg[item].style.width = '141.87px';
+  // innerImg[item].style.height = '141.87px';
   innerOval3[item].style.marginTop = '11.8px';
 }
 
+//computer selection
+const computerSelection = [
+  paper,
+  rock,
+  scissors
+]
+
+const getRandom = (id) => {
+  const filteredItems = computerSelection.filter((elt, index) => index !== id)
+  const random = filteredItems[Math.floor(Math.random() * filteredItems.length)];
+  return random;
+}
+
+
+//Generate component and set the dimensions equal to the user's selected
 const computerSelectionMode = (node, type) => {
   setTimeout(() => {  
     if (type === 'rock') {
@@ -86,14 +100,14 @@ const computerSelectionMode = (node, type) => {
       if (ovals[index] === 'outer-oval' && type === 'rock') currentNode.style.marginLeft = '-130px';
       else if (ovals[index] === 'outer-oval') currentNode.style.marginLeft = '-70px';
       if (ovals[index] === 'inner-oval3') currentNode.style.marginTop = '11.82px';
-      const nodeInnerImg = currentNode.querySelector('img');
-      nodeInnerImg.style.width = '141.87px';
-      nodeInnerImg.style.height = '141.87px';
+      // const nodeInnerImg = currentNode.querySelector('img');
+      // nodeInnerImg.style.width = '141.87px';
+      // nodeInnerImg.style.height = '141.87px';
       })
-  }, 2000);
+  }, 1000);
 }
 
-
+//user selection
 paper.addEventListener('click', () => {
   emptyCircle.style.display = 'block';
   ovalResize(0);
@@ -119,17 +133,3 @@ rock.addEventListener('click', () => {
   computerSelectionMode(node, 'rock')
   lower.appendChild(node);
 });
-
-
-//computer selection
-const computerSelection = [
-  paper,
-  rock,
-  scissors
-]
-
-const getRandom = (id) => {
-  const filteredItems = computerSelection.filter((elt, index) => index !== id)
-  const random = filteredItems[Math.floor(Math.random() * filteredItems.length)];
-  return random;
-}
