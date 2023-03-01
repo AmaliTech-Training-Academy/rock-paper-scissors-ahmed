@@ -1,11 +1,11 @@
 
 //user selection
 const paper = window.document.querySelector('.paper'); 
-const outerOval = window.document.querySelector('.outer-oval');
-const innerOval1 = window.document.querySelector('.inner-oval1');
-const innerOval2 = window.document.querySelector('.inner-oval2');
-const innerOval3 = window.document.querySelector('.inner-oval3');
-const innerImg = window.document.querySelector('.inner-oval-img')
+const outerOval = window.document.querySelectorAll('.outer-oval');
+const innerOval1 = window.document.querySelectorAll('.inner-oval1');
+const innerOval2 = window.document.querySelectorAll('.inner-oval2');
+const innerOval3 = window.document.querySelectorAll('.inner-oval3');
+const innerImg = window.document.querySelectorAll('.inner-oval-img')
 const ovalContainer = window.document.querySelector('.oval-container');
 const upper = window.document.querySelector('.upper');
 const lower = window.document.querySelector('.lower'); 
@@ -15,134 +15,121 @@ const selection = window.document.querySelector('.selection');
 const picked = window.document.querySelector('.picked');
 const housePicked = window.document.querySelector('.house-picked');
 const emptyCircle = window.document.querySelector('.empty-circle');
-
-const outerOvalScissors = window.document.querySelector('.outer-oval.scissors')
-const innerOvalScissors1 = window.document.querySelector('.inner-oval1.scissors');
-const innerOvalScissors2 = window.document.querySelector('.inner-oval2.scissors');
-const innerOvalScissors3 = window.document.querySelector('.inner-oval3.scissors');
-
-const outerOvalRock = window.document.querySelector('.outer-oval.rock')
-const innerOvalRock1 = window.document.querySelector('.inner-oval1.rock');
-const innerOvalRock2 = window.document.querySelector('.inner-oval2.rock');
-const innerOvalRock3 = window.document.querySelector('.inner-oval3.rock');
+const emptyCircleRock = window.document.querySelector('.empty-circle-rock');
 
 
+const activateElt = (elt, type, cssType="display") => {
+  elt.style[cssType] = type;
+}
+
+const selectedItemDim = [
+  {
+    width: '292.61px',
+    height: '300px',
+  },
+  {
+    width: '292.61px',
+    height: '286.7px',
+  },
+  {
+    width: '224.63px',
+    height: '224.63px',
+  },
+  {
+    width: '224.63px',
+    height: '212.81px',
+  },
+]
+
+const ovalResize = (item) => {
+  const items = [paper, scissors, rock];
+  const ovals = [outerOval, innerOval1, innerOval2, innerOval3];
+
+  items.forEach((elt) => {
+    if (elt !== items[item]) activateElt(elt, 'none');
+  });
+  activateElt(items[item], 'block');
+  activateElt(picked, 'block');
+  activateElt(housePicked, 'block'); 
+  activateElt(selection, 'none', 'background');
+
+  selection.classList.add('selected');
+
+  Object.keys(selectedItemDim).forEach((elt, index) => {
+    const currentDim = selectedItemDim[elt];
+    ovals[index][item].style.width = currentDim.width;
+    ovals[index][item].style.height = currentDim.height;
+  });
+
+  innerImg[item].style.width = '141.87px';
+  innerImg[item].style.height = '141.87px';
+  innerOval3[item].style.marginTop = '11.8px';
+}
+
+const computerSelectionMode = (node, type) => {
+  setTimeout(() => {  
+    if (type === 'rock') {
+      emptyCircleRock.style.display = 'none';
+      lower.style.paddingTop = '63px';
+    }
+    else {
+      emptyCircle.style.display = 'none';
+      upper.style.paddingTop = '63px';
+    }
+    node.style.display = 'block';
+    const ovals = ['outer-oval', 'inner-oval1', 'inner-oval2', 'inner-oval3']
+    Object.keys(selectedItemDim).forEach((elt, index) => {
+      const currentDim = selectedItemDim[elt];
+      const currentNode = node.querySelector(`.${ovals[index]}`)
+      currentNode.style.width = currentDim.width;
+      currentNode.style.height = currentDim.height;
+      if (ovals[index] === 'outer-oval' && type === 'rock') currentNode.style.marginLeft = '-130px';
+      else if (ovals[index] === 'outer-oval') currentNode.style.marginLeft = '-70px';
+      if (ovals[index] === 'inner-oval3') currentNode.style.marginTop = '11.82px';
+      const nodeInnerImg = currentNode.querySelector('img');
+      nodeInnerImg.style.width = '141.87px';
+      nodeInnerImg.style.height = '141.87px';
+      })
+  }, 2000);
+}
 
 
 paper.addEventListener('click', () => {
-  // console.log('height', window.innerHeight);
-  // console.log('width', window.innerWidth);
-  if(paper.style.display === 'none'){
-    paper.style.display = 'none'
-  } else {
-    paper.style.display = 'block'
-    picked.style.display = 'block'
-    rock.style.display = 'none'
-    scissors.style.display = 'none'
-    selection.style.background = 'none'
-    
-    housePicked.style.display = 'block'
-    selection.classList.add('selected');
-    emptyCircle.style.display = 'block';
-    outerOval.style.width = '292.61px';
-    outerOval.style.height = '300px';
-
-    innerOval1.style.width = '292.61px';
-    innerOval1.style.height = '286.7px';
-
-    innerOval2.style.width = '224.63px';
-    innerOval2.style.height = '224.63px';
-
-    innerOval3.style.width = '224.63px';
-    innerOval3.style.height = '212.81px';
-    innerOval3.style.marginTop = '11.82px'
-
-    // innerImg.style.width = '141.87px';
-    // innerImg.style.height = '141.87px';
-  }
+  emptyCircle.style.display = 'block';
+  ovalResize(0);
+  const node = getRandom(0);
+  computerSelectionMode(node)
+  upper.appendChild(node);
 })
 
 scissors.addEventListener('click', () => {
-  if(scissors.style.display === 'none'){
-    scissors.style.display = 'none'
-  } else {
-    scissors.style.display = 'block'
-    picked.style.display = 'block'
-    rock.style.display = 'none'
-    paper.style.display = 'none'
-    selection.style.background = 'none'
-    
-    housePicked.style.display = 'block'
-    selection.classList.add('selected');
-    emptyCircle.style.display = 'block';
-
-    outerOvalScissors.style.width = '292.61px';
-    outerOvalScissors.style.height = '300px';
-
-    innerOvalScissors1.style.width = '292.61px';
-    innerOvalScissors1.style.height = '286.7px';
-
-    innerOvalScissors2.style.width = '224.63px';
-    innerOvalScissors2.style.height = '224.63px';
-
-    innerOvalScissors3.style.width = '224.63px';
-    innerOvalScissors3.style.height = '212.81px';
-    innerOvalScissors3.style.marginTop = '11.82px'
-
-
-    // innerImg.style.width = '141.87px';
-    // innerImg.style.height = '141.87px';
-    }
+  emptyCircle.style.display = 'block';
+  ovalResize(1);
+  const node = getRandom(2);
+  computerSelectionMode(node)
+  upper.appendChild(node);
 })
 
 rock.addEventListener('click', () => {
-  if(rock.style.display === 'none'){
-    rock.style.display = 'none'
-  } else {
-    rock.style.display = 'block'
-    picked.style.display = 'block'
-    scissors.style.display = 'none'
-    paper.style.display = 'none'
-    selection.style.background = 'none'
-
-    // lower.classList.add('active')
-    // lower.style.display = 'flex'
-    // lower.style.flexDirection = 'column-reverse'
-    // emptyCircle.classList.add('active')
-
-    housePicked.style.display = 'block'
-    selection.classList.add('selected');
-    emptyCircle.style.display = 'block';
-    emptyCircle.style.marginLeft = '400px';
-
-    outerOvalRock.style.width = '292.61px';
-    outerOvalRock.style.height = '300px';
-
-    innerOvalRock1.style.width = '292.61px';
-    innerOvalRock1.style.height = '286.7px';
-
-    innerOvalRock2.style.width = '224.63px';
-    innerOvalRock2.style.height = '224.63px';
-  
-
-    innerOvalRock3.style.width = '224.63px';
-    innerOvalRock3.style.height = '212.81px';
-    innerOvalRock3.style.marginTop = '11.82px'
-
-
-    // innerImg.style.width = '141.87px';
-    // innerImg.style.height = '141.87px';
-    }
-})
+  upper.style.display = 'none';
+  lower.style.justifyContent = 'space-between';
+  emptyCircleRock.style.display = 'block';
+  const node = getRandom(1);
+  ovalResize(2);
+  computerSelectionMode(node, 'rock')
+  lower.appendChild(node);
+});
 
 
 //computer selection
-// var computerSelection = [
-//   paper,
-//   rock,
-//   scissors
-// ]
+const computerSelection = [
+  paper,
+  rock,
+  scissors
+]
 
-// const getRandom = () => {
-//   var random = computerSelection[Math.floor(Math.random() * computerSelection.length)];
-// }
+const getRandom = (id) => {
+  const filteredItems = computerSelection.filter((elt, index) => index !== id)
+  const random = filteredItems[Math.floor(Math.random() * filteredItems.length)];
+  return random;
+}

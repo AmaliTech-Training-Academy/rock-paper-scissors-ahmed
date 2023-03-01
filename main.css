@@ -133,7 +133,7 @@ main {
   flex-direction: column; */
   width: 100%;
   max-width: 700px;
-  background-image: red;
+  /* background-image: red; */
 }
 
 .upper {
@@ -207,12 +207,12 @@ main {
 }
 
 .lower{
-  /* display: flex;
+  display: flex;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
   /* transform: translate(50%); */
   margin-top: 24px;
-  background-color: red;
+  /* background-color: red; */
 }
 
 /* .rock.active  {
@@ -321,11 +321,15 @@ button:hover {
   justify-content: space-around;
 }
 
-.empty-circle {
+.empty-circle, .empty-circle-rock {
   width: 224.63px;
   height: 224.63px;
   background: rgba(0, 0, 0, 0.1);
   display: none;
   border-radius: 50%;
   margin-top: 90px;
+}
+
+.empty-circle-rock {
+  margin-right: 63.62px;
 }
