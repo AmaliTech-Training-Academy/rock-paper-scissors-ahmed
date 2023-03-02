@@ -16,6 +16,7 @@ const emptyCircle = window.document.querySelector('.empty-circle');
 const emptyCircleRock = window.document.querySelector('.empty-circle-rock');
 
 
+
 const activateElt = (elt, type, cssType="display") => {
   elt.style[cssType] = type;
 }
@@ -133,3 +134,48 @@ rock.addEventListener('click', () => {
   computerSelectionMode(node, 'rock')
   lower.appendChild(node);
 });
+
+
+//increase user's score
+const increaseScore = userWin => {
+  var userScore = window.document.querySelector('.num');
+  var score = parseInt(userScore.innerHTML);
+
+  if(userWin) {
+    score++
+  } else {
+    score--
+  }
+  userScore.innerHTML = score;
+}
+
+//determine the winner
+const determineWinner = (userChoice, computerChoice) => {
+  if ((userChoice === "rock" && computerChoice === "scissors") ||
+  (userChoice === "paper" && computerChoice === "rock") ||
+  (userChoice === "scissors" && computerChoice === "paper")) {
+    console.log('User wins')
+    return userChoice; //user wins
+  } else {
+    console.log('User loses')
+    return computerChoice; //computer wins
+  }
+}
+
+//play round between user and computer
+const playRound = userChoice => {
+  var computerChoice = getRandom()
+  var playResult = determineWinner(userChoice, computerChoice)
+
+  if (playResult === userChoice) {
+    increaseScore(true); // Increase the score if the user wins
+  } else if (playResult === computerChoice) {
+    increaseScore(false); // Decrease the score if the user loses
+  }
+
+  // code to display the round result and update the game state
+  // userScore.innerHTML = score;
+}
+
+playRound()
+

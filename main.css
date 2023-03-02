@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@700&display=swap');
 
-html {
-  /* overflow: hidden; */
-}
 
 body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  background-color: #1F3757;
 }
 
 main {
-  background-color: #1F3757;
   padding-top: 48px;
-  /* overflow: hidden; */
+  width: 95%;
+  margin-inline: 32px;
+  height: calc(100vh - 3rem);
+  position: relative;
 }
 
 .score-panel {
@@ -27,7 +27,6 @@ main {
   justify-content: center;
   align-items: center;
 }
-
 .container {
   margin: 18px 24px;
   height: 114px;
@@ -88,11 +87,6 @@ main {
   text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
   text-transform: uppercase;
   display: none;
-  /* transform: translate(-70%, -50%); */
-  /* position: absolute; */
-  /* top: 270px;
-    left: 421px; */
-  /* margin-top: 72px; */
 }
 
 .house-picked {
@@ -127,13 +121,8 @@ main {
 }
 
 .selection.selected .lower {
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column; */
   width: 100%;
   max-width: 700px;
-  /* background-image: red; */
 }
 
 .upper {
@@ -210,18 +199,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* transform: translate(50%); */
   margin-top: 24px;
-  /* background-color: red; */
 }
-
-/* .rock.active  {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: center;
-  align-items: center;
-  transform: translateX(70%);
-} */
 
 .btn { margin-top: 4px }
 
@@ -234,8 +213,9 @@ main {
   color: #ffffff;
   text-transform: uppercase;
   margin-bottom: 32px;
-  position: relative;
-  left: 1356px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
   font-family: 'Barlow Semi Condensed', sans-serif;
   letter-spacing: 2.5px;
   font-weight: 600;
