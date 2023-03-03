@@ -204,7 +204,7 @@ main {
 
 .btn { margin-top: 4px }
 
- button {
+ .button {
   width: 128px;
   height: 40px;
   background: none;
@@ -313,4 +313,56 @@ button:hover {
 
 .empty-circle-rock {
   margin-right: 63.62px;
+}
+
+.replay-round {
+  width: 220px;
+  height: 131px;
+}
+
+.user-win,
+.user-lose {
+  width: 220px;
+  height: 131px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  display: none; 
+}
+
+.user-win span,
+.user-lose span {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 67px;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
+  text-transform: uppercase;
+}
+
+.play-again {
+  width: 220px;
+  height: 48px;
+  background: #FFFFFF;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
+  border-radius: 8px;
+  margin-top: 16px;
+  border: none;
+  text-transform: uppercase;
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 2.5px;
+  color: #3B4262;
+}
+
+.play-again:hover {
+  color: #DB2E4D;
+  cursor: pointer;
+  transition: .3s ease-in-out;
 }

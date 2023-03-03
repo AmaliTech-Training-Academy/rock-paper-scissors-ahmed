@@ -154,26 +154,36 @@ rock.addEventListener('click', () => {
 
 //increase user's score
 const increaseScore = userWin => {
-  var userScore = window.document.querySelector('.num');
-  var score = parseInt(userScore.innerHTML);
+  var score = localStorage.getItem('score');
+  const storedScore = localStorage.getItem('score');
+  score = storedScore ? parseInt(storedScore) : 0;
 
   if(userWin) {
     score++
   } else {
     score--
   }
-  userScore.innerHTML = score;
+  
+  localStorage.setItem('score', score.toString())
+  
+  var userScore = window.document.querySelector('.num');
+  userScore.innerHTML = parseInt(score.toString());
+  score = parseInt(userScore.innerHTML);
+  console.log(score);
 }
 
 //determine the winner base on user and computer selection
 const determineWinner = (userChoice, computerChoice) => {
+  const userWin = window.document.querySelector('.user-win');
+  const userLose = window.document.querySelector('.user-lose');
+
   if ((userChoice === "rock" && computerChoice === "scissors") ||
   (userChoice === "paper" && computerChoice === "rock") ||
   (userChoice === "scissors" && computerChoice === "paper")) {
-    // console.log('User wins')
+    userWin.style.display = 'block';
     return userChoice; //user wins
   } else {
-    // console.log('User loses')
+    userLose.style.display = 'block';
     return computerChoice; //computer wins
   }
 }
@@ -188,5 +198,3 @@ const playRound = (userChoice, computerChoice) => {
     increaseScore(false); // Decrease the score if the user loses
   }
 }
-
-
