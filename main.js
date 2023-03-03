@@ -110,7 +110,7 @@ const computerSelectionMode = (node, type, conputerType) => {
       currentNode.style.width = currentDim.width;
       currentNode.style.height = currentDim.height;
       if (ovals[index] === 'outer-oval' && type === 'rock') currentNode.style.marginLeft = '-130px';
-      else if (ovals[index] === 'outer-oval') currentNode.style.marginLeft = '-70px';
+      else if (ovals[index] === 'outer-oval') currentNode.style.marginLeft = '-60px';
       if (ovals[index] === 'inner-oval3') currentNode.style.marginTop = '11.82px';
       // const nodeInnerImg = currentNode.querySelector('img');
       // nodeInnerImg.style.width = '141.87px';

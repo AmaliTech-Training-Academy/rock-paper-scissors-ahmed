@@ -299,6 +299,7 @@ button:hover {
 .pick {
   display: flex;
   justify-content: space-around;
+  gap: 40px;
 }
 
 .empty-circle, .empty-circle-rock {
