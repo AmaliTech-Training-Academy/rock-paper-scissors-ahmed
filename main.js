@@ -95,6 +95,7 @@ const computerSelectionMode = (node, type, conputerType) => {
   setTimeout(() => { 
     if (type === 'rock') {
       emptyCircleRock.style.display = 'none';
+      // emptyCircleRock.style.marginLeft = '330px'; ///Keep for now
       lower.style.paddingTop = '63px';
     }
     else {
@@ -145,6 +146,7 @@ rock.addEventListener('click', () => {
   upper.style.display = 'none';
   lower.style.justifyContent = 'space-between';
   emptyCircleRock.style.display = 'block';
+  // emptyCircleRock.style.marginLeft = '-3330px'; ///Keep for now
   const [element, text] = getRandom(1);
   ovalResize(2);
   computerSelectionMode(element, 'rock', text)
@@ -181,6 +183,7 @@ const determineWinner = (userChoice, computerChoice) => {
   (userChoice === "paper" && computerChoice === "rock") ||
   (userChoice === "scissors" && computerChoice === "paper")) {
     userWin.style.display = 'block';
+    // ovalContainer.style.gap = '152px' ///Keep for now
     return userChoice; //user wins
   } else {
     userLose.style.display = 'block';
@@ -197,4 +200,6 @@ const playRound = (userChoice, computerChoice) => {
   } else if (playResult === computerChoice) {
     increaseScore(false); // Decrease the score if the user loses
   }
+
+  //set a timeout to display the winner and set a gap between the user choice and computer computer choice
 }
