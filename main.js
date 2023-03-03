@@ -14,7 +14,7 @@ const picked = window.document.querySelector('.picked');
 const housePicked = window.document.querySelector('.house-picked');
 const emptyCircle = window.document.querySelector('.empty-circle');
 const emptyCircleRock = window.document.querySelector('.empty-circle-rock');
-
+const gameProgress = window.document.querySelector('#game-progress');
 
 
 const activateElt = (elt, type, cssType="display") => {
@@ -44,6 +44,7 @@ const selectedItemDim = [
 const ovalResize = (item) => {
   const items = [paper, scissors, rock];
   const ovals = [outerOval, innerOval1, innerOval2, innerOval3];
+  items[item].style.pointerEvents = 'none'; 
 
   items.forEach((elt) => {
     if (elt !== items[item]) activateElt(elt, 'none');
@@ -52,7 +53,6 @@ const ovalResize = (item) => {
   activateElt(picked, 'block');
   activateElt(housePicked, 'block'); 
   activateElt(selection, 'none', 'background');
-
   selection.classList.add('selected');
 
   Object.keys(selectedItemDim).forEach((elt, index) => {
@@ -73,16 +73,26 @@ const computerSelection = [
   scissors
 ]
 
+const playersItem = [
+  'paper',
+  'rock',
+  'scissors'
+]
+
 const getRandom = (id) => {
-  const filteredItems = computerSelection.filter((elt, index) => index !== id)
-  const random = filteredItems[Math.floor(Math.random() * filteredItems.length)];
-  return random;
+  const filterPlayersItems = playersItem.filter((elt, index) => index !== id);
+  const filteredItems = computerSelection.filter((elt, index) => index !== id);
+  const randomNum = Math.floor(Math.random() * filteredItems.length)
+  const random = filteredItems[randomNum];
+  return [random, filterPlayersItems[randomNum]];
 }
 
 
 //Generate component and set the dimensions equal to the user's selected
-const computerSelectionMode = (node, type) => {
-  setTimeout(() => {  
+const computerSelectionMode = (node, type, conputerType) => {
+  node.style.pointerEvents = 'none'; 
+
+  setTimeout(() => { 
     if (type === 'rock') {
       emptyCircleRock.style.display = 'none';
       lower.style.paddingTop = '63px';
@@ -93,6 +103,7 @@ const computerSelectionMode = (node, type) => {
     }
     node.style.display = 'block';
     const ovals = ['outer-oval', 'inner-oval1', 'inner-oval2', 'inner-oval3']
+
     Object.keys(selectedItemDim).forEach((elt, index) => {
       const currentDim = selectedItemDim[elt];
       const currentNode = node.querySelector(`.${ovals[index]}`)
@@ -105,34 +116,39 @@ const computerSelectionMode = (node, type) => {
       // nodeInnerImg.style.width = '141.87px';
       // nodeInnerImg.style.height = '141.87px';
       })
+
+    playRound(type, conputerType);
+
   }, 1000);
 }
+
 
 //user selection
 paper.addEventListener('click', () => {
   emptyCircle.style.display = 'block';
   ovalResize(0);
-  const node = getRandom(0);
-  computerSelectionMode(node)
-  upper.appendChild(node);
+  const [element, text] = getRandom(0);
+  computerSelectionMode(element, 'paper', text)
+  upper.appendChild(element);
 })
 
 scissors.addEventListener('click', () => {
   emptyCircle.style.display = 'block';
   ovalResize(1);
-  const node = getRandom(2);
-  computerSelectionMode(node)
-  upper.appendChild(node);
+  const [element, text] = getRandom(2);
+  computerSelectionMode(element, 'scissors', text)
+  upper.appendChild(element);
+
 })
 
 rock.addEventListener('click', () => {
   upper.style.display = 'none';
   lower.style.justifyContent = 'space-between';
   emptyCircleRock.style.display = 'block';
-  const node = getRandom(1);
+  const [element, text] = getRandom(1);
   ovalResize(2);
-  computerSelectionMode(node, 'rock')
-  lower.appendChild(node);
+  computerSelectionMode(element, 'rock', text)
+  lower.appendChild(element);
 });
 
 
@@ -149,22 +165,21 @@ const increaseScore = userWin => {
   userScore.innerHTML = score;
 }
 
-//determine the winner
+//determine the winner base on user and computer selection
 const determineWinner = (userChoice, computerChoice) => {
   if ((userChoice === "rock" && computerChoice === "scissors") ||
   (userChoice === "paper" && computerChoice === "rock") ||
   (userChoice === "scissors" && computerChoice === "paper")) {
-    console.log('User wins')
+    // console.log('User wins')
     return userChoice; //user wins
   } else {
-    console.log('User loses')
+    // console.log('User loses')
     return computerChoice; //computer wins
   }
 }
 
 //play round between user and computer
-const playRound = userChoice => {
-  var computerChoice = getRandom()
+const playRound = (userChoice, computerChoice) => {
   var playResult = determineWinner(userChoice, computerChoice)
 
   if (playResult === userChoice) {
@@ -172,10 +187,6 @@ const playRound = userChoice => {
   } else if (playResult === computerChoice) {
     increaseScore(false); // Decrease the score if the user loses
   }
-
-  // code to display the round result and update the game state
-  // userScore.innerHTML = score;
 }
 
-playRound()
 
