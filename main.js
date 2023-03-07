@@ -12,9 +12,15 @@ const rock = window.document.querySelector('.rock');
 const selection = window.document.querySelector('.selection');
 const picked = window.document.querySelector('.picked');
 const housePicked = window.document.querySelector('.house-picked');
+const pickedUpper = window.document.querySelector('.picked.t-upper');
+const housePickedUpper = window.document.querySelector('.house-picked.t-upper');
+const pickedLower = window.document.querySelector('.picked.t-lower');
+const housePickedLower = window.document.querySelector('.house-picked.t-lower');
 const emptyCircle = window.document.querySelector('.empty-circle');
 const emptyCircleRock = window.document.querySelector('.empty-circle-rock');
 const gameProgress = window.document.querySelector('#game-progress');
+const playAgainWin = window.document.querySelectorAll('.user-win .play-again')
+const playAgainLose = window.document.querySelectorAll('.user-lose .play-again')
 
 
 const activateElt = (elt, type, cssType="display") => {
@@ -44,26 +50,32 @@ const selectedItemDim = [
 const ovalResize = (item) => {
   const items = [paper, scissors, rock];
   const ovals = [outerOval, innerOval1, innerOval2, innerOval3];
+  const lowerList  = [2];
   items[item].style.pointerEvents = 'none'; 
 
   items.forEach((elt) => {
     if (elt !== items[item]) activateElt(elt, 'none');
   });
   activateElt(items[item], 'block');
-  activateElt(picked, 'block');
-  activateElt(housePicked, 'block'); 
   activateElt(selection, 'none', 'background');
   selection.classList.add('selected');
 
   Object.keys(selectedItemDim).forEach((elt, index) => {
-    const currentDim = selectedItemDim[elt];
-    ovals[index][item].style.width = currentDim.width;
-    ovals[index][item].style.height = currentDim.height;
+    ovals[index][item].classList.add('selected');
   });
+
+  // for(let i = 0; i < pic.length; i++){
+  const pickedActive = lowerList.includes(item) ? pickedLower : pickedUpper;
+  const housePickedActive = lowerList.includes(item) ? housePickedLower : housePickedUpper;
+    activateElt(picked, 'block');
+  activateElt(housePicked, 'block'); 
+  activateElt(pickedActive, 'block');
+  activateElt(housePickedActive, 'block'); 
+  // }
 
   // innerImg[item].style.width = '141.87px';
   // innerImg[item].style.height = '141.87px';
-  innerOval3[item].style.marginTop = '11.8px';
+  // innerOval3[item].style.marginTop = '11.8px';
 }
 
 //computer selection
@@ -95,7 +107,6 @@ const computerSelectionMode = (node, type, conputerType) => {
   setTimeout(() => { 
     if (type === 'rock') {
       emptyCircleRock.style.display = 'none';
-      // emptyCircleRock.style.marginLeft = '330px'; ///Keep for now
       lower.style.paddingTop = '63px';
     }
     else {
@@ -108,11 +119,15 @@ const computerSelectionMode = (node, type, conputerType) => {
     Object.keys(selectedItemDim).forEach((elt, index) => {
       const currentDim = selectedItemDim[elt];
       const currentNode = node.querySelector(`.${ovals[index]}`)
-      currentNode.style.width = currentDim.width;
-      currentNode.style.height = currentDim.height;
-      if (ovals[index] === 'outer-oval' && type === 'rock') currentNode.style.marginLeft = '-130px';
-      else if (ovals[index] === 'outer-oval') currentNode.style.marginLeft = '-60px';
-      if (ovals[index] === 'inner-oval3') currentNode.style.marginTop = '11.82px';
+      // currentNode.style.width = currentDim.width;
+      // currentNode.style.height = currentDim.height;
+      currentNode.classList.add('selected');
+      currentNode.classList.add(`${type}1`);
+      currentNode.classList.add('comp');
+
+      // if (ovals[index] === 'outer-oval' && type === 'rock') currentNode.style.marginLeft = '-130px';
+      // else if (ovals[index] === 'outer-oval') currentNode.style.marginLeft = '-60px';
+      // if (ovals[index] === 'inner-oval3') currentNode.style.marginTop = '11.82px';
       // const nodeInnerImg = currentNode.querySelector('img');
       // nodeInnerImg.style.width = '141.87px';
       // nodeInnerImg.style.height = '141.87px';
@@ -146,7 +161,6 @@ rock.addEventListener('click', () => {
   upper.style.display = 'none';
   lower.style.justifyContent = 'space-between';
   emptyCircleRock.style.display = 'block';
-  // emptyCircleRock.style.marginLeft = '-3330px'; ///Keep for now
   const [element, text] = getRandom(1);
   ovalResize(2);
   computerSelectionMode(element, 'rock', text)
@@ -154,7 +168,7 @@ rock.addEventListener('click', () => {
 });
 
 
-//increase user's score
+//increase user's score and store in the localStorage
 const increaseScore = userWin => {
   var score = localStorage.getItem('score');
   const storedScore = localStorage.getItem('score');
@@ -171,22 +185,44 @@ const increaseScore = userWin => {
   var userScore = window.document.querySelector('.num');
   userScore.innerHTML = parseInt(score.toString());
   score = parseInt(userScore.innerHTML);
-  console.log(score);
 }
 
 //determine the winner base on user and computer selection
 const determineWinner = (userChoice, computerChoice) => {
-  const userWin = window.document.querySelector('.user-win');
-  const userLose = window.document.querySelector('.user-lose');
+  const replayRoundUpper = window.document.querySelector('.replay-round.r-upper');
+  const replayRoundLower = window.document.querySelector('.replay-round.r-lower');
+  const replayRoundLowerMobile = window.document.querySelector('.replay-round.m-sect');
+  const pick = window.document.querySelector('.pick');
+  // const upperList = ['paper', 'scissors']
+  const lowerList = ['rock']
+
+  replayRoundLower.style.marginLeft = '-35px'
+  replayRoundUpper.style.marginLeft = '35px'
+  pick.style.gap = '320px' 
 
   if ((userChoice === "rock" && computerChoice === "scissors") ||
   (userChoice === "paper" && computerChoice === "rock") ||
   (userChoice === "scissors" && computerChoice === "paper")) {
-    userWin.style.display = 'block';
-    // ovalContainer.style.gap = '152px' ///Keep for now
+    if(userChoice === "rock") lower.style.maxWidth = '938px'
+    const replaySect = lowerList.includes(userChoice) ? replayRoundLower: replayRoundUpper;
+    replaySect.classList.add('show');  
+    replaySect.querySelector('.user-win').style.display = 'block';
+    replaySect.querySelector('.user-lose').style.display = 'none';
+    
+    replayRoundLowerMobile.classList.add('show');  
+    replayRoundLowerMobile.querySelector('.user-win').style.display = 'block';
+    replayRoundLowerMobile.querySelector('.user-lose').style.display = 'none';
     return userChoice; //user wins
   } else {
-    userLose.style.display = 'block';
+    if(userChoice === "rock") lower.style.maxWidth = '938px'
+    const replaySect = lowerList.includes(userChoice) ? replayRoundLower: replayRoundUpper;
+    replaySect.classList.add('show');  
+    replaySect.querySelector('.user-win').style.display = 'none';
+    replaySect.querySelector('.user-lose').style.display = 'block';
+
+    replayRoundLowerMobile.classList.add('show');  
+    replayRoundLowerMobile.querySelector('.user-win').style.display = 'none';
+    replayRoundLowerMobile.querySelector('.user-lose').style.display = 'block';
     return computerChoice; //computer wins
   }
 }
@@ -200,6 +236,18 @@ const playRound = (userChoice, computerChoice) => {
   } else if (playResult === computerChoice) {
     increaseScore(false); // Decrease the score if the user loses
   }
+  selection.classList.add('media-select') //increase the width on click to make space for play again button
+  selection.classList.add(`${userChoice}-mob`)
+ }
 
-  //set a timeout to display the winner and set a gap between the user choice and computer computer choice
+//keep track of the score after the page refreshes
+window.onload = () => {
+  const numElement = window.document.querySelector('.num')
+  numElement.innerText = localStorage.getItem('score')
+}
+
+//play another round from the beginning
+for(var i = 0; i < playAgainWin.length; i++) {
+  playAgainWin[i].addEventListener("click", () => window.location.reload());
+  playAgainLose[i].addEventListener("click", () => window.location.reload());
 }

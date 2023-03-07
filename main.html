@@ -11,91 +11,123 @@
 </head>
 <body>
   <main>
-    <div>
-      <div class="score-panel">
-        <section class="container">
-          <img src="./images/logo.svg" alt='rps'>
-          <div class="score-board">
-            <div class="text">
-              <span class="score">Score</span>
-              <span class="num">0</span>
+    <div class="score-panel">
+      <section class="container">
+        <img src="./images/logo.svg" alt='rps'>
+        <div class="score-board">
+          <div class="text">
+            <span class="score">Score</span>
+            <span class="num">0</span>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="selection">
+      <div class="selection-text desk">
+        <div class="pick">
+          <span class="picked">You Picked</span>
+          <span class="house-picked">The House Picked</span>
+        </div>
+      </div>
+      <div class="oval-container">
+        <div class="upper">
+          <div class="paper">
+            <div class="outer-oval paper">
+              <div class="inner-oval1 paper">
+                <div class="inner-oval2 paper">
+                  <div class="inner-oval3 paper">
+                    <img class="inner-oval-img" src="./images/icon-paper.svg" alt="paper">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
-      </div>
-      <div class="selection">
-        <div class="selection-text">
+          <div class="scissors">
+            <div class="outer-oval scissors">
+              <div class="inner-oval1 scissors">
+                <div class="inner-oval2 scissors">
+                  <div class="inner-oval3 scissors">
+                    <img class="inner-oval-img" src="./images/icon-scissors.svg" alt="scissors">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="replay-round r-upper">
+            <div class="user-win">
+              <span>You Win</span>
+              <button class="play-again l-win">Play Again</button>
+            </div>
+            <div class="user-lose">
+              <span>You Lose</span>
+              <button class="play-again l-lose">Play Again</button>
+            </div>
+          </div>
+          <div class="empty-circle"></div>
+        </div>
+        <div class="selection-text mobile">
           <div class="pick">
-            <span class="picked">You Picked</span>
-            <span class="house-picked">The House Picked</span>
-          </div>
-        </div>
-        <div class="oval-container">
-          <div class="upper">
-            <div class="paper">
-              <div class="outer-oval paper">
-                <div class="inner-oval1 paper">
-                  <div class="inner-oval2 paper">
-                    <div class="inner-oval3 paper">
-                      <img class="inner-oval-img" src="./images/icon-paper.svg" alt="paper">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="scissors">
-              <div class="outer-oval scissors">
-                <div class="inner-oval1 scissors">
-                  <div class="inner-oval2 scissors">
-                    <div class="inner-oval3 scissors">
-                      <img class="inner-oval-img" src="./images/icon-scissors.svg" alt="scissors">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="empty-circle"></div>
-          </div>
-        </div>
-        <div class="lower">
-          <div class="rock">
-            <div class="outer-oval rock">
-              <div class="inner-oval1 rock">
-                <div class="inner-oval2 rock">
-                  <div class="inner-oval3 rock">
-                    <img class="inner-oval-img" src="./images/icon-rock.svg" alt="rock">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="empty-circle-rock"></div>
-        </div>
-      </div>
-      <div class="btn">
-        <button class="button" data-modal-target="#modal" id="addRules">Rules</button>
-        <div class="modal" id="modal">
-          <div class="modal-header">
-            <span>Rules</span>
-            <img src="./images/icon-close.svg" alt="close" data-close-button>
-          </div>
-          <div class="modal-content">
-            <img src="./images/image-rules.svg" alt="rules">
+            <span class="picked t-upper">You Picked</span>
+            <span class="house-picked t-upper">The House Picked</span>
           </div>
         </div>
       </div>
-      <div id="overlay"></div>
-      <div class="replay-round">
-        <div class="user-win">
-          <span>You Win</span>
-          <button class="play-again">Play Again</button>
+      <div class="lower">
+        <div class="rock">
+          <div class="outer-oval rock">
+            <div class="inner-oval1 rock">
+              <div class="inner-oval2 rock">
+                <div class="inner-oval3 rock">
+                  <img class="inner-oval-img" src="./images/icon-rock.svg" alt="rock">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="user-lose">
-          <span>You Lose</span>
-          <button class="play-again">Play Again</button>
+        <div class="replay-round r-lower">
+          <div class="user-win">
+            <span>You Win</span>
+            <button class="play-again win">Play Again</button>
+          </div>
+          <div class="user-lose">
+            <span>You Lose</span>
+            <button class="play-again lose">Play Again</button>
+          </div>
+        </div>
+        <div class="empty-circle-rock"></div>
+      </div>
+      <div class="selection-text mobile">
+        <div class="pick">
+          <span class="picked t-lower">You Picked</span>
+          <span class="house-picked t-lower">The House Picked</span>
         </div>
       </div>
     </div>
+    <div class="disp-flex">
+      <div class="replay-round mobile m-sect">
+        <div class="user-win">
+          <span>You Win</span>
+          <button class="play-again l-win">Play Again</button>
+        </div>
+        <div class="user-lose">
+          <span>You Lose</span>
+          <button class="play-again l-lose">Play Again</button>
+        </div>
+      </div>
+    </div>
+    <div class="btn">
+      <button class="button" data-modal-target="#modal" id="addRules">Rules</button>
+      <div class="modal" id="modal">
+        <div class="modal-header">
+          <span>Rules</span>
+          <img src="./images/icon-close.svg" alt="close" data-close-button>
+        </div>
+        <div class="modal-content">
+          <img src="./images/image-rules.svg" alt="rules">
+        </div>
+      </div>
+    </div>
+    <div id="overlay"></div>
   </main>
 </body>
 </html>
