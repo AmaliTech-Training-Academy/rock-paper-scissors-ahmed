@@ -459,6 +459,101 @@ button:hover {
   display: none;
 }
 
+/* play advanced */
+.play-advanced {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 472px;
+  height: 463px;
+  background: white;
+  position: relative;
+  margin-inline: auto;
+}
+
+.oval{
+  width: 145px;
+  height: 148px;
+  position: relative;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
+  border-radius: 50%;
+}
+
+.oval1 {
+  width: 145px;
+  height: 141.44px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.oval2 {
+  width: 112px;
+  height: 111px;
+  background: #BABFD4;
+  border-radius: 50%;
+}
+
+.oval3 {
+  width: 111.31px;
+  height: 104.99px;
+  margin-top: 5.83px;  
+  background: linear-gradient(0deg, #F3F3F3 0%, #DADADA 98.34%); 
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.oval.scissors { background: #C76C1B }
+.oval1.scissors { background: #EB9F0E }
+
+.oval.spock { background: #2D8DAB } 
+.oval1.spock { background: #3FB7CD }
+
+.oval.paper { background: #2A45C2 }
+.oval1.paper { background: #4664F4 }
+
+.oval.lizard { background: #5F37A8 }
+.oval1.lizard { background: #834EE3 }
+
+.oval.rock { background: #9D1634 }
+.oval1.rock { background: #DB2E4D }
+
+.scissors-ad,
+.spock-ad,
+.paper-ad,
+.lizard-ad,
+.rock-ad { position: absolute }
+
+
+.scissors-ad {
+  left: 164px;
+  top: 0;
+}
+
+.spock-ad {
+  left: 0;
+  top: 129px;
+}
+
+.paper-ad {
+  left: 327px;
+  top: 129px;
+}
+
+.lizard-ad {
+  left: 65px;
+  top: 315px;
+}
+
+.rock-ad {
+  left: 262px;
+  top: 315px;
+}
+
 
 @media only screen and (max-width: 450px) {
   main {

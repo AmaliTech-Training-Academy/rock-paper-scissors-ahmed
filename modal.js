@@ -12,29 +12,43 @@ openRules.addEventListener('click', () => openModal());
 closeRules.addEventListener('click', () => closeModal());
 
 const openModal = () => {
-  if(modal === null) return 
+  if(modal === null) 
+  return 
   modal.classList.add('active')
   overlay.classList.add('active')
-}
+  
+  // else if(advance === null) {
+  //   return 
+  //   advance.classList.add('active')
+  //   overlay.classList.add('active')
+  // }
+} 
 
 const closeModal = () => {
-  if(modal === null) return 
+  if(modal === null) 
+  return 
   modal.classList.remove('active')
   overlay.classList.remove('active')
+  
+  // else if(advance === null) {
+  // return 
+  // advance.classList.remove('active')
+  // overlay.classList.remove('active')
+  // }
 }
 
 //advanced modal
-openAdvanced.addEventListener('click', () => openAdvance());
-closeAdvanced.addEventListener('click', () => closeAdvance());
+// openAdvanced.addEventListener('click', () => openAdvance());
+// closeAdvanced.addEventListener('click', () => closeAdvance());
 
-const openAdvance = () => {
-  if(advance === null) return 
-  advance.classList.add('active')
-  overlay.classList.add('active')
-}
+// const openAdvance = () => {
+//   if(advance === null) return 
+//   advance.classList.add('active')
+//   overlay.classList.add('active')
+// }
 
-const closeAdvance = () => {
-  if(advance === null) return 
-  advance.classList.remove('active')
-  overlay.classList.remove('active')
-}
+// const closeAdvance = () => {
+//   if(advance === null) return 
+//   advance.classList.remove('active')
+//   overlay.classList.remove('active')
+// }
