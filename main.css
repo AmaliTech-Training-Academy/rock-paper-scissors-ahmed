@@ -213,7 +213,6 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: green;
  }
 
  .button,
@@ -461,13 +460,12 @@ button:hover {
 
 /* play advanced */
 .play-advanced {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 472px;
   height: 463px;
-  background: white;
   position: relative;
   margin-inline: auto;
 }
@@ -554,20 +552,19 @@ button:hover {
   top: 315px;
 }
 
+.logo-bonus {
+  display: none;
+}
+
 
 @media only screen and (max-width: 450px) {
   main {
-    /* width: 125vw; */
     padding-top: 32px;   
-    /* height: 120vh; */
-    /* background: wheat; */
   }
 
   .score-panel {
     width: 311px;
     height: 96px;
-    /* margin-bottom: 105px; */
-    /* background: red; */
   }
 
   .selection.selected .upper {

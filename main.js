@@ -64,18 +64,12 @@ const ovalResize = (item) => {
     ovals[index][item].classList.add('selected');
   });
 
-  // for(let i = 0; i < pic.length; i++){
   const pickedActive = lowerList.includes(item) ? pickedLower : pickedUpper;
   const housePickedActive = lowerList.includes(item) ? housePickedLower : housePickedUpper;
-    activateElt(picked, 'block');
+  activateElt(picked, 'block');
   activateElt(housePicked, 'block'); 
   activateElt(pickedActive, 'block');
   activateElt(housePickedActive, 'block'); 
-  // }
-
-  // innerImg[item].style.width = '141.87px';
-  // innerImg[item].style.height = '141.87px';
-  // innerOval3[item].style.marginTop = '11.8px';
 }
 
 //computer selection
@@ -119,23 +113,14 @@ const computerSelectionMode = (node, type, conputerType) => {
     Object.keys(selectedItemDim).forEach((elt, index) => {
       const currentDim = selectedItemDim[elt];
       const currentNode = node.querySelector(`.${ovals[index]}`)
-      // currentNode.style.width = currentDim.width;
-      // currentNode.style.height = currentDim.height;
       currentNode.classList.add('selected');
       currentNode.classList.add(`${type}1`);
       currentNode.classList.add('comp');
-
-      // if (ovals[index] === 'outer-oval' && type === 'rock') currentNode.style.marginLeft = '-130px';
-      // else if (ovals[index] === 'outer-oval') currentNode.style.marginLeft = '-60px';
-      // if (ovals[index] === 'inner-oval3') currentNode.style.marginTop = '11.82px';
-      // const nodeInnerImg = currentNode.querySelector('img');
-      // nodeInnerImg.style.width = '141.87px';
-      // nodeInnerImg.style.height = '141.87px';
       })
 
     playRound(type, conputerType);
 
-  }, 1000);
+  }, 500);
 }
 
 
@@ -193,7 +178,6 @@ const determineWinner = (userChoice, computerChoice) => {
   const replayRoundLower = window.document.querySelector('.replay-round.r-lower');
   const replayRoundLowerMobile = window.document.querySelector('.replay-round.m-sect');
   const pick = window.document.querySelector('.pick');
-  // const upperList = ['paper', 'scissors']
   const lowerList = ['rock']
 
   replayRoundLower.style.marginLeft = '-35px'
