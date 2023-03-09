@@ -9,7 +9,7 @@ body {
 }
 
 main {
-  padding-top: 48px;
+  padding: 48px 0.3rem 0 0.3rem;
   /* width: 95%; */
   /* margin-inline: 32px; */
   height: calc(100vh - 3rem);
@@ -213,9 +213,18 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row-reverse;
+  /* padding: 0 2rem; */
+  position: absolute;
+  bottom: 0;
+  /* height: 15%; */
+  /* width: 100%; */
+  /* margin-inline: auto; */
+  /* border: 1px solid red; */
+  bottom: 32px;
  }
 
- .button,
+ .rule-button,
  .advanced {
   width: 128px;
   height: 40px;
@@ -224,10 +233,8 @@ main {
   border-radius: 8px;
   color: #ffffff;
   text-transform: uppercase;
-  margin-bottom: 32px;
-  position: absolute;
-  right: 32px;
-  bottom: 0;
+  /* margin-bottom: 32px; */
+  /* position: absolute; */
   font-family: 'Barlow Semi Condensed', sans-serif;
   letter-spacing: 2.5px;
   font-weight: 600;
@@ -236,8 +243,16 @@ main {
   text-align: center;
 }
 
+.rule-button{
+  position: relative;
+  /* right: 2rem; */
+  /* bottom: 1rem; */
+}
+
 .advanced {
-  left: 32px;
+  position: relative;
+  /* left: 2rem; */
+  /* bottom: 1rem; */
 }
 
 button:hover {
@@ -470,6 +485,12 @@ button:hover {
   margin-inline: auto;
 }
 
+.play-advanced.selected {
+  width: 100%;
+  /* max-width: 938px; */
+  max-width: 700px;
+}
+
 .oval{
   width: 145px;
   height: 148px;
@@ -632,10 +653,15 @@ button:hover {
     /* margin-bottom: 30px; */
   }
 
-  .button {
-    position: absolute;
-    left: 33%;
-    /* margin-bottom: 56px; */
+  .rule-button{
+    position: unset;
+  /* bottom: 2rem; */
+  
+  }
+  
+  .advanced {
+    position: unset;
+    /* bottom: 2rem; */
   }
 
   .paper,
@@ -682,7 +708,8 @@ button:hover {
     height: 50px;
   }
 
-  .modal {
+  .modal,
+  .advance {
     width: 100%;
     height: 100%;
   }
@@ -702,6 +729,13 @@ button:hover {
     width: 305px;
     height: 271px;
     margin: 0 auto;
+  }
+
+  .modal-content1 img{
+    width: 311px;
+    height: 305px;
+    margin: 0 auto;
+
   }
 
   .empty-circle, .empty-circle-rock {
@@ -787,4 +821,109 @@ button:hover {
     display: flex;
     justify-content: center;
   }
+
+  /* play-advanced */
+  .play-advanced {
+    width: 311px;
+    height: 305px;
+    position: relative;
+  }
+
+  .play-advanced img {
+    width: 227px;
+    height: 227px;
+  }
+
+  .oval{
+    width: 96px;
+    height: 97px;
+  }
+
+  .oval1 {
+    width: 96px;
+    height: 92.7px;
+  }
+  .oval2 {
+    width: 74px;
+    height: 73px;
+  }
+
+  .oval3 {
+    width: 73.7px;
+    height: 68.81px; 
+    margin-top: 3.82px;   
+  }
+
+  .oval3.scissors .oval-img {
+    width: 47px;
+    height: 46px;
+  }
+
+  .oval3.spock .oval-img {
+    width: 30px;
+    height: 39px;
+  }
+
+  .oval3.paper .oval-img {
+    width: 36px;
+    height: 41px;
+  }
+
+  .oval3.lizard .oval-img {
+    width: 41px;
+    height: 40px;
+  }
+
+  .oval3.rock .oval-img {
+    width: 37px;
+    height: 36px;
+  }
+
+  .scissors-ad,
+  .spock-ad,
+  .paper-ad,
+  .lizard-ad,
+  .rock-ad { position: absolute }
+
+  .scissors-ad {
+    left: 108px;
+    top: 0;
+  }
+  
+  .spock-ad {
+    left: 0;
+    top: 85px;
+  }
+  
+  .paper-ad {
+    left: 215px;
+    top: 85px;
+  }
+  
+  .lizard-ad {
+    left: 43px;
+    top: 208px;
+  }
+  
+  .rock-ad {
+    left: 173px;
+    top: 208px;
+  }
+  
+  .container .logo-bonus {
+    width: 49px;
+    height: 48px;
+    margin-left: 12px;
+  }
+
+  .btn {
+    /* position: relative; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row-reverse;
+    width: 100%;
+  }
+
 }

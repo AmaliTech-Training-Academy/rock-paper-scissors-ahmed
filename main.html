@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="main.css">
   <script defer src="modal.js"></script>
   <script defer src="main.js"></script>
+  <script defer src="advance.js"></script>
   <title>Rock Paper Scissors</title>
 </head>
 <body>
@@ -116,29 +117,6 @@
         </div>
       </div>
     </div>
-    <div class="btn">
-      <button class="button" data-modal-target="#modal" id="addRules">Rules</button>
-      <div class="modal" id="modal">
-        <div class="modal-header">
-          <span>Rules</span>
-          <img src="./images/icon-close.svg" alt="close" data-close-button>
-        </div>
-        <div class="modal-content">
-          <img src="./images/image-rules.svg" alt="rules">
-        </div>
-      </div>
-      <button onClick="changeButtonText()" class="advanced" value="Advance" data-target="#advance" id="addAdvance">Advanced</button>
-      <div class="advance" id="advanced">
-        <div class="modal-header">
-          <span>Rules</span>
-          <img src="./images/icon-close.svg" alt="close" data-close>
-        </div>
-        <div class="modal-content1">
-          <img class="bonus" src="./images/image-rules-bonus.svg" alt="rules">
-        </div>
-      </div>
-    </div>
-    <div id="overlay"></div>
     <div class="play-advanced">
       <img src="./images/bg-pentagon.svg" alt="">
       <div class="scissors-ad">
@@ -197,6 +175,29 @@
         </div>
       </div>    
     </div>
+    <div class="btn">
+      <button class="rule-button" data-modal-target="#modal" id="addRules">Rules</button>
+      <div class="modal" id="modal">
+        <div class="modal-header">
+          <span>Rules</span>
+          <img src="./images/icon-close.svg" alt="close" data-close-button>
+        </div>
+        <div class="modal-content">
+          <img src="./images/image-rules.svg" alt="rules">
+        </div>
+      </div>
+      <button onClick="changeButtonText()" class="advanced" value="Advance" data-target="#advance" id="addAdvance">Advanced</button>
+      <div class="advance" id="advanced">
+        <div class="modal-header">
+          <span>Rules</span>
+          <img src="./images/icon-close.svg" alt="close" data-close>
+        </div>
+        <div class="modal-content1">
+          <img class="bonus" src="./images/image-rules-bonus.svg" alt="rules">
+        </div>
+      </div>
+    </div>
+    <div id="overlay"></div>
   </main>
 </body>
 </html>
