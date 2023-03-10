@@ -210,18 +210,19 @@ main {
 
 .btn { 
   margin-top: 4px;
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row-reverse;
+  flex-direction: row-reverse; */
   /* padding: 0 2rem; */
   position: absolute;
-  bottom: 0;
+  /* bottom: 0; */
   /* height: 15%; */
   /* width: 100%; */
   /* margin-inline: auto; */
   /* border: 1px solid red; */
   bottom: 32px;
+  right: 32px;
  }
 
  .rule-button,
@@ -245,6 +246,7 @@ main {
 
 .rule-button{
   position: relative;
+  /* left: 80rem; */
   /* right: 2rem; */
   /* bottom: 1rem; */
 }
@@ -499,6 +501,11 @@ button:hover {
   border-radius: 50%;
 }
 
+.oval.selected {
+  width: 292.61px;
+  height: 300px
+}
+
 .oval1 {
   width: 145px;
   height: 141.44px;
@@ -508,11 +515,21 @@ button:hover {
   align-items: center;
 }
 
+.oval1.selected {
+  width: 292.61px;
+  height: 286.7px  
+}
+
 .oval2 {
   width: 112px;
   height: 111px;
   background: #BABFD4;
   border-radius: 50%;
+}
+
+.oval2.selected {
+  width: 224.63px;
+  height: 224.63px
 }
 
 .oval3 {
@@ -524,6 +541,11 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.oval3.selected {
+  width: 224.63px;
+  height: 212.81px
 }
 
 .oval.scissors { background: #C76C1B }
@@ -575,6 +597,15 @@ button:hover {
 
 .logo-bonus {
   display: none;
+}
+
+.empty_circle{
+  width: 224.63px;
+  height: 224.63px;
+  background: rgba(0, 0, 0, 0.1);
+  display: none;
+  border-radius: 50%;
+  /* margin-top: 90px; */
 }
 
 
@@ -829,7 +860,7 @@ button:hover {
     position: relative;
   }
 
-  .play-advanced img {
+  .play-advanced .pentagon {
     width: 227px;
     height: 227px;
   }
@@ -917,13 +948,14 @@ button:hover {
   }
 
   .btn {
-    /* position: relative; */
-    display: flex;
+    position: absolute;
+    transform: translate(-65%,0);
+    /* display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
     flex-direction: row-reverse;
-    width: 100%;
+    width: 100%; */
   }
 
 }

@@ -3,19 +3,19 @@ const spockAd = window.document.querySelector('.spock-ad');
 const paperAd = window.document.querySelector('.paper-ad');
 const lizardAd = window.document.querySelector('.lizard-ad');
 const rockAd = window.document.querySelector('.rock-ad');
-const oval = window.document.querySelector('.oval')
-const oval1 = window.document.querySelector('.oval1')
-const oval2 = window.document.querySelector('.oval2')
-const oval3 = window.document.querySelector('.oval3')
-const playAdvance = window.document.querySelector('.play-advance')
+const oval = window.document.querySelectorAll('.oval')
+const oval1 = window.document.querySelectorAll('.oval1')
+const oval2 = window.document.querySelectorAll('.oval2')
+const oval3 = window.document.querySelectorAll('.oval3')
+const playAdvanced = window.document.querySelector('.play-advance')
+const pentagon = window.document.querySelector('.pentagon')
 
 
-
-const activateElt = (elt, type, cssType="display") => {
+const activateElement = (elt, type, cssType="display") => {
   elt.style[cssType] = type;
 }
 
-const selectedItemDim = [
+const selectedItemDimension = [
   {
     width: '292.61px',
     height: '300px',
@@ -37,35 +37,38 @@ const selectedItemDim = [
 
 
 //Resize and display elements after click
-const ovalResize = (item) => {
+const ovalsResize = (item) => {
+  console.log(item);
   const items = [scissorsAd, spockAd, paperAd, lizardAd, rockAd];
   const ovals = [oval, oval1, oval2, oval3];
   // const lowerList  = [2];
   items[item].style.pointerEvents = 'none'; 
 
   items.forEach((elt) => {
-    if (elt !== items[item]) activateElt(elt, 'none');
+    if (elt !== items[item]) activateElement(elt, 'none');
   });
-  activateElt(items[item], 'block');
-  activateElt(playAdvance, 'none', 'background');
-  playAdvance.classList.add('selected');
+  activateElement(items[item], 'block');
+  activateElement(pentagon, 'none');
+  // playAdvanced.classList.add('selected');
 
-  Object.keys(selectedItemDim).forEach((elt, index) => {
-    ovals[index][item].classList.add('selected');
+  Object.keys(selectedItemDimension)?.forEach((elt, index) => {
+    console.log(ovals[index][item]);
+    ovals[index][item]?.classList?.add('selected');
+    
   });
 
   // const pickedActive = lowerList.includes(item) ? pickedLower : pickedUpper;
   // const housePickedActive = lowerList.includes(item) ? housePickedLower : housePickedUpper;
-  // activateElt(picked, 'block');
-  // activateElt(housePicked, 'block'); 
-  // activateElt(pickedActive, 'block');
-  // activateElt(housePickedActive, 'block'); 
+  // activateElement(picked, 'block');
+  // activateElement(housePicked, 'block'); 
+  // activateElement(pickedActive, 'block');
+  // activateElement(housePickedActive, 'block'); 
 }
 
 
 
 //computer selection
-const computerSelection = [
+const computersSelection = [
   scissorsAd,
   spockAd,
   paperAd,
@@ -73,7 +76,7 @@ const computerSelection = [
   rockAd
 ]
 
-const playersItem = [
+const playerItem = [
   'scissors',
   'spock',
   'paper',
@@ -81,7 +84,7 @@ const playersItem = [
   'rock'
 ]
 
-const getRandom = (id) => {
+const getRandomItem = (id) => {
   const filterPlayersItems = playersItem.filter((elt, index) => index !== id);
   const filteredItems = computerSelection.filter((elt, index) => index !== id);
   const randomNum = Math.floor(Math.random() * filteredItems.length)
@@ -92,7 +95,7 @@ const getRandom = (id) => {
 
 
 //Generate component and set the dimensions equal to the user's selected
-const computerSelectionMode = (node, type, conputerType) => {
+const computerSelectMode = (node, type, conputerType) => {
   node.style.pointerEvents = 'none'; 
 
   setTimeout(() => { 
@@ -107,15 +110,15 @@ const computerSelectionMode = (node, type, conputerType) => {
     node.style.display = 'block';
     const ovals = ['oval', 'oval1', 'oval2', 'oval3']
 
-    Object.keys(selectedItemDim).forEach((elt, index) => {
-      const currentDim = selectedItemDim[elt];
+    Object.keys(selectedItemDimension).forEach((elt, index) => {
+      const currentDim = selectedItemDimension[elt];
       const currentNode = node.querySelector(`.${ovals[index]}`)
-      currentNode.classList.add('selected');
+      currentNode?.classList?.add('selected');
       // currentNode.classList.add(`${type}1`);
       // currentNode.classList.add('comp');
       })
 
-    playRound(type, conputerType);
+    play_Round(type, conputerType);
 
   }, 500);
 }
@@ -123,13 +126,13 @@ const computerSelectionMode = (node, type, conputerType) => {
 
 
 //play round between user and computer
-const playRound = (userChoice, computerChoice) => {
-  var playResult = determineWinner(userChoice, computerChoice)
+const play_Round = (userChoice, computerChoice) => {
+  var playResult = determine_Winner(userChoice, computerChoice)
 
   if (playResult === userChoice) {
-    increaseScore(true); // Increase the score if the user wins
+    increaseUserScore(true); // Increase the score if the user wins
   } else if (playResult === computerChoice) {
-    increaseScore(false); // Decrease the score if the user loses
+    increaseUserScore(false); // Decrease the score if the user loses
   }
   // selection.classList.add('media-select') //increase the width on click to make space for play again button
   // selection.classList.add(`${userChoice}-mob`)
@@ -138,7 +141,7 @@ const playRound = (userChoice, computerChoice) => {
 
 
  //increase user's score and store in the localStorage
-const increaseScore = userWin => {
+const increaseUserScore = userWin => {
   var score = localStorage.getItem('score');
   const storedScore = localStorage.getItem('score');
   score = storedScore ? parseInt(storedScore) : 0;
@@ -159,7 +162,7 @@ const increaseScore = userWin => {
 
 
 //determine the winner base on user and computer selection
-const determineWinner = (userChoice, computerChoice) => {
+const determine_Winner = (userChoice, computerChoice) => {
   // const replayRoundUpper = window.document.querySelector('.replay-round.r-upper');
   // const replayRoundLower = window.document.querySelector('.replay-round.r-lower');
   // const replayRoundLowerMobile = window.document.querySelector('.replay-round.m-sect');
@@ -203,8 +206,40 @@ const determineWinner = (userChoice, computerChoice) => {
 
 scissorsAd.addEventListener('click', () => {
   // emptyCircle.style.display = 'block';
-  ovalResize(0);
-  const [element, text] = getRandom(0);
-  computerSelectionMode(element, 'paper', text)
+  ovalsResize(0);
+  const [element, text] = getRandomItem(0);
+  computerSelectMode(element, 'paper', text)
+  // upper.appendChild(element);
+})
+
+spockAd.addEventListener('click', () => {
+  // emptyCircle.style.display = 'block';
+  ovalsResize(1);
+  const [element, text] = getRandomItem(1);
+  computerSelectMode(element, 'paper', text)
+  // upper.appendChild(element);
+})
+
+paperAd.addEventListener('click', () => {
+  // emptyCircle.style.display = 'block';
+  ovalsResize(2);
+  const [element, text] = getRandomItem(2);
+  computerSelectMode(element, 'paper', text)
+  // upper.appendChild(element);
+})
+
+lizardAd.addEventListener('click', () => {
+  // emptyCircle.style.display = 'block';
+  ovalsResize(3);
+  const [element, text] = getRandomItem(3);
+  computerSelectMode(element, 'paper', text)
+  // upper.appendChild(element);
+})
+
+rockAd.addEventListener('click', () => {
+  // emptyCircle.style.display = 'block';
+  ovalsResize(4);
+  const [element, text] = getRandomItem(4);
+  computerSelectMode(element, 'paper', text)
   // upper.appendChild(element);
 })
