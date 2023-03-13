@@ -128,7 +128,7 @@ main {
 
 .selection.selected .lower {
   width: 100%;
-  max-width: 700px;
+  /* max-width: 700px; */
 }
 
 .upper {
@@ -206,6 +206,10 @@ main {
   justify-content: center;
   align-items: center;
   /* margin-top: 24px; */
+}
+
+.lower.active {
+  max-width: 938px;
 }
 
 .btn { 
@@ -501,8 +505,18 @@ button:hover {
   width: 100%;
   /* max-width: 938px; */
   max-width: 700px;
-  background: green;
+  /* background: green; */
+  /* margin-top: -50px; */
 }
+
+.play-advanced.active {
+  max-width: 938px;
+}
+
+/* .oval-img.selected {
+  width: 73px;
+  height: 86px;
+} */
 
 .oval{
   width: 145px;
@@ -696,6 +710,7 @@ button:hover {
 
   .selection.selected .upper {
     padding-right: 0;
+    margin-inline: auto;
   }
 
   .upper {
@@ -742,15 +757,20 @@ button:hover {
     background-size: 226px 234px;
   }
 
-  /* .selection.selected,
-  .play-advanced.selected {
-    max-width: 311px;
-  } */
-
-  .selection.selected,
+  
   .play-advanced.selected {
     width: 100%;
-    /* max-width: 938px; */
+    max-width: 311px;
+    margin-top: -50px;
+  }
+
+  .selection.selected
+  /* .play-advanced.selected  */
+  {
+    width: 100%;
+  }
+
+  .play-advanced.active {
     max-width: 311px;
   }
 
@@ -822,6 +842,11 @@ button:hover {
     height: 50px;
   }
 
+  .lower.active {
+    width: 100%;
+    max-width: 311px;
+  }
+
   .modal,
   .advance {
     width: 100%;
@@ -864,13 +889,13 @@ button:hover {
   }
 
   .pick {
-    gap: 70px;
+    gap: 50px;
     width: 100%;
     /* max-width: 304px; */
   }
 
   .pick-ad.selected {
-    gap: 10px;
+    gap: 43px;
   }
 
   .pick-ad.active { margin-top: 225px;}
@@ -881,7 +906,9 @@ button:hover {
     line-height: 32px;
     text-align: center;
     letter-spacing: 1.875px;
-  }
+  } 
+
+  .picked { margin-left: 20px;}
 
   .house-picked,
   .house-picked-ad {
@@ -895,6 +922,12 @@ button:hover {
   .selection.selected .upper,
   .selection.selected .lower {
     width: 100%;
+    max-width: 311px;
+    /* background: red; */
+  } 
+
+  .selection.selected .lower {
+    margin-inline: auto;
   }
 
   .outer-oval.selected {
@@ -929,6 +962,7 @@ button:hover {
 
   .replay-round.mobile.show {
     display: block;
+    margin-top: -20px;
   }
 
   
@@ -1032,7 +1066,7 @@ button:hover {
   .lizard-ad.selected,
   .rock-ad.selected {
     position: absolute;
-    left: 100px;
+    left: 170px;
     /* top: 90px; */
   }
 
@@ -1076,7 +1110,7 @@ button:hover {
     width: 110px;
     height: 110px;
     position: absolute;
-    left: 170px;
+    left: 180px;
     top: 110px;
   }
 

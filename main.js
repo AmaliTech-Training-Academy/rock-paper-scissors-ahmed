@@ -101,11 +101,11 @@ const computerSelectionMode = (node, type, conputerType) => {
   setTimeout(() => { 
     if (type === 'rock') {
       emptyCircleRock.style.display = 'none';
-      lower.style.paddingTop = '63px';
+      lower.style.paddingTop = '50px';
     }
     else {
       emptyCircle.style.display = 'none';
-      upper.style.paddingTop = '63px';
+      upper.style.paddingTop = '50px';
     }
     node.style.display = 'block';
     const ovals = ['outer-oval', 'inner-oval1', 'inner-oval2', 'inner-oval3']
@@ -187,7 +187,7 @@ const determineWinner = (userChoice, computerChoice) => {
   if ((userChoice === "rock" && computerChoice === "scissors") ||
   (userChoice === "paper" && computerChoice === "rock") ||
   (userChoice === "scissors" && computerChoice === "paper")) {
-    if(userChoice === "rock") lower.style.maxWidth = '938px'
+    if(userChoice === "rock") lower.classList.add('active')
     const replaySect = lowerList.includes(userChoice) ? replayRoundLower: replayRoundUpper;
     replaySect.classList.add('show');  
     replaySect.querySelector('.user-win').style.display = 'block';
@@ -198,7 +198,7 @@ const determineWinner = (userChoice, computerChoice) => {
     replayRoundLowerMobile.querySelector('.user-lose').style.display = 'none';
     return userChoice; //user wins
   } else {
-    if(userChoice === "rock") lower.style.maxWidth = '938px'
+    if(userChoice === "rock") lower.classList.add('active') 
     const replaySect = lowerList.includes(userChoice) ? replayRoundLower: replayRoundUpper;
     replaySect.classList.add('show');  
     replaySect.querySelector('.user-win').style.display = 'none';

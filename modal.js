@@ -65,11 +65,47 @@ const changeButtonText = () => {
   if (btn.value == "Advance") {
     btn.value = "Main";
     btn.innerHTML = "Main";
+    // localStorage.setItem('buttonText', 'Main')
   } else {
     btn.value = "Advance";
     btn.innerHTML = "Advance";
+    // localStorage.setItem('buttonText', 'Advance')
   }
 }
+
+// window.addEventListener('load', () => {
+//   var btn = document.getElementById("addAdvance");
+//   const savedButtonText = localStorage.getItem('buttonText');
+//   if (savedButtonText) {
+//     btn.value = savedButtonText;
+//     btn.innerHTML = savedButtonText;
+//   } else {
+//     // If no saved button text, set the default based on current content
+//     const currentContent = getCurrentContent(); // Replace with your code to get current content
+//     if (currentContent == "Main") {
+//       btn.value = "Advance";
+//       btn.innerHTML = "Advance";
+//     } else {
+//       btn.value = "Main";
+//       btn.innerHTML = "Main";
+//     }
+//     localStorage.setItem('buttonText', btn.value);
+//   }
+// });
+
+
+// const onContentChange = () => {
+//   const currentContent = getCurrentContent(); // Replace with your code to get current content
+//   var btn = document.getElementById("addAdvance");
+//   if (currentContent == "Advance") {
+//     btn.value = "Advance";
+//     btn.innerHTML = "Advance";
+//   } else {
+//     btn.value = "Main";
+//     btn.innerHTML = "Main";
+//   }
+//   localStorage.setItem('buttonText', btn.value);
+// }
 
 //keep page contents after refreshing
 // window.onload = () => {
@@ -80,3 +116,4 @@ const changeButtonText = () => {
 //   localStorage.setItem('main', JSON.stringify(state));
 //   localStorage.setItem('advance', JSON.stringify(state))
 // }
+
