@@ -76,7 +76,7 @@ main {
   color: #565468;
 }
 
- .picked {
+.picked {
   height: 32px;
   font-family: 'Barlow Semi Condensed';
   font-weight: 700;
@@ -371,7 +371,8 @@ button:hover {
   margin-right: 63.62px;
 }
 
-.replay-round {
+.replay-round,
+.replay_round {
   width: 220px;
   height: 131px;
   display: flex;
@@ -380,18 +381,25 @@ button:hover {
   display: none;
 }
 
-.replay-round.show {
+.replay-round.show,
+.replay_round.show {
   display: block;
 }
 
+.replay_round.show { position: absolute }
+
 .user-win,
-.user-lose {
+.user-lose,
+.user_win,
+.user_lose {
   width: 220px;
   height: 131px;
 }
 
 .user-win span,
-.user-lose span {
+.user-lose span,
+.user_win span,
+.user_lose span {
   font-family: 'Barlow Semi Condensed';
   font-style: normal;
   font-weight: 700;
@@ -406,7 +414,8 @@ button:hover {
   align-items: center;
 }
 
-.play-again {
+.play-again,
+.play_again {
   width: 220px;
   height: 48px;
   background: #FFFFFF;
@@ -424,7 +433,8 @@ button:hover {
   color: #3B4262;
 }
 
-.play-again:hover {
+.play-again:hover,
+.play_again:hover {
   color: #DB2E4D;
   cursor: pointer;
   transition: .3s ease-in-out;
@@ -491,6 +501,7 @@ button:hover {
   width: 100%;
   /* max-width: 938px; */
   max-width: 700px;
+  background: green;
 }
 
 .oval{
@@ -503,7 +514,7 @@ button:hover {
 
 .oval.selected {
   width: 292.61px;
-  height: 300px
+  height: 300px;
 }
 
 .oval1 {
@@ -545,7 +556,8 @@ button:hover {
 
 .oval3.selected {
   width: 224.63px;
-  height: 212.81px
+  height: 212.81px;
+  margin-top: 11.82px
 }
 
 .oval.scissors { background: #C76C1B }
@@ -569,6 +581,25 @@ button:hover {
 .lizard-ad,
 .rock-ad { position: absolute }
 
+.scissors-ad.selected,
+.spock-ad.selected,
+.paper-ad.selected,
+.lizard-ad.selected,
+.rock-ad.selected {
+  position: absolute;
+  left: 640px;
+  top: 90px;
+}
+
+.scissors-ad.active,
+.spock-ad.active,
+.paper-ad.active,
+.lizard-ad.active,
+.rock-ad.active {
+  position: absolute;
+  left: 0px;
+  top: 90px;
+}
 
 .scissors-ad {
   left: 164px;
@@ -605,9 +636,53 @@ button:hover {
   background: rgba(0, 0, 0, 0.1);
   display: none;
   border-radius: 50%;
-  /* margin-top: 90px; */
+  margin-right: 63.23px;
+  position: absolute;
+  right: 0;
+  top: 120px;
 }
 
+.pick-ad {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  /* background: yellow; */
+  gap: 40px;
+  position: relative;
+}
+
+.pick-ad.selected {
+  gap: 330px;
+}
+
+.pick-ad.active {margin-top: -425px }
+
+.picked-ad {
+  height: 32px;
+  font-family: 'Barlow Semi Condensed';
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 3px;
+  color: #FFFFFF;
+  text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
+  text-transform: uppercase;
+  display: none;
+  margin-left: 20px;
+}
+
+.house-picked-ad {
+  font-family: 'Barlow Semi Condensed';
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 3px;
+  color: #FFFFFF;
+  text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.196706);
+  text-transform: uppercase;
+  display: none;
+  position: relative;
+}
 
 @media only screen and (max-width: 450px) {
   main {
@@ -667,7 +742,15 @@ button:hover {
     background-size: 226px 234px;
   }
 
-  .selection.selected {
+  /* .selection.selected,
+  .play-advanced.selected {
+    max-width: 311px;
+  } */
+
+  .selection.selected,
+  .play-advanced.selected {
+    width: 100%;
+    /* max-width: 938px; */
     max-width: 311px;
   }
 
@@ -769,7 +852,8 @@ button:hover {
 
   }
 
-  .empty-circle, .empty-circle-rock {
+  .empty-circle, 
+  .empty-circle-rock {
     width: 110px;
     height: 110px;
     margin-top: 0px;
@@ -785,24 +869,28 @@ button:hover {
     /* max-width: 304px; */
   }
 
-  .picked {
+  .pick-ad.selected {
+    gap: 10px;
+  }
+
+  .pick-ad.active { margin-top: 225px;}
+
+  .picked,
+  .picked-ad {
     font-size: 15px;
     line-height: 32px;
     text-align: center;
     letter-spacing: 1.875px;
   }
 
-  .house-picked {
+  .house-picked,
+  .house-picked-ad {
     font-size: 15px;
     line-height: 32px;
     letter-spacing: 1.875px;
   }
 
-  .selection.selected {
-    width: 100%;
-    /* max-width: 938px; */
-    max-width: 311px;
-  }
+  /* .house-picked-ad { margin-left: 25px;} */
 
   .selection.selected .upper,
   .selection.selected .lower {
@@ -870,19 +958,41 @@ button:hover {
     height: 97px;
   }
 
+  .oval.selected {
+    width: 130px;
+    height: 133px;
+  }
+
   .oval1 {
     width: 96px;
     height: 92.7px;
   }
+
+  .oval1.selected {
+    width: 130px;
+    height: 127.1px;
+  }
+
   .oval2 {
     width: 74px;
     height: 73px;
+  }
+
+  .oval2.selected {
+    width: 100px;
+    height: 100px;
   }
 
   .oval3 {
     width: 73.7px;
     height: 68.81px; 
     margin-top: 3.82px;   
+  }
+
+  .oval3.selected {
+    width: 99.8px;
+    height: 94.34px;
+    margin-top: 5.24px;
   }
 
   .oval3.scissors .oval-img {
@@ -916,6 +1026,27 @@ button:hover {
   .lizard-ad,
   .rock-ad { position: absolute }
 
+  .scissors-ad.selected,
+  .spock-ad.selected,
+  .paper-ad.selected,
+  .lizard-ad.selected,
+  .rock-ad.selected {
+    position: absolute;
+    left: 100px;
+    /* top: 90px; */
+  }
+
+  .scissors-ad.active,
+  .spock-ad.active,
+  .paper-ad.active,
+  .lizard-ad.active,
+  .rock-ad.active {
+    position: absolute;
+    left: 0px;
+    /* top: 90px; */
+  }
+
+
   .scissors-ad {
     left: 108px;
     top: 0;
@@ -940,6 +1071,20 @@ button:hover {
     left: 173px;
     top: 208px;
   }
+
+  .empty_circle {
+    width: 110px;
+    height: 110px;
+    position: absolute;
+    left: 170px;
+    top: 110px;
+  }
+
+  .replay_round.show { 
+    position: absolute;
+    top: 300px
+   }
+
   
   .container .logo-bonus {
     width: 49px;
@@ -949,7 +1094,7 @@ button:hover {
 
   .btn {
     position: absolute;
-    transform: translate(-65%,0);
+    /* transform: translate(-65%,0); */
     /* display: flex;
     justify-content: center;
     align-items: center;

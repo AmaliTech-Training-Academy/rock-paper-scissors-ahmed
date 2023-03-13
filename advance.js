@@ -7,8 +7,17 @@ const oval = window.document.querySelectorAll('.oval')
 const oval1 = window.document.querySelectorAll('.oval1')
 const oval2 = window.document.querySelectorAll('.oval2')
 const oval3 = window.document.querySelectorAll('.oval3')
-const playAdvanced = window.document.querySelector('.play-advance')
+const playAdvanced = window.document.querySelector('.play-advanced')
 const pentagon = window.document.querySelector('.pentagon')
+const empty_Circle = window.document.querySelector('.empty_circle')
+const ovalScissors = window.document.querySelector('.oval.scissors')
+const pickAd = window.document.querySelector('.pick-ad')
+const pickedAd = window.document.querySelector('.picked-ad')
+const housePickedAd = window.document.querySelector('.house-picked-ad')
+const playAgainWinAd = window.document.querySelector('.user_win .play_again')
+const playAgainLoseAd = window.document.querySelector('.user_lose .play_again')
+
+
 
 
 const activateElement = (elt, type, cssType="display") => {
@@ -38,7 +47,6 @@ const selectedItemDimension = [
 
 //Resize and display elements after click
 const ovalsResize = (item) => {
-  console.log(item);
   const items = [scissorsAd, spockAd, paperAd, lizardAd, rockAd];
   const ovals = [oval, oval1, oval2, oval3];
   // const lowerList  = [2];
@@ -49,7 +57,11 @@ const ovalsResize = (item) => {
   });
   activateElement(items[item], 'block');
   activateElement(pentagon, 'none');
-  // playAdvanced.classList.add('selected');
+  activateElement(pickedAd, 'block')
+  // activateElement(pickAd, '-425px', 'marginTop')
+  activateElement(housePickedAd, 'block')
+  pickAd.classList.add('active')
+  playAdvanced.classList.add('selected');
 
   Object.keys(selectedItemDimension)?.forEach((elt, index) => {
     console.log(ovals[index][item]);
@@ -68,7 +80,7 @@ const ovalsResize = (item) => {
 
 
 //computer selection
-const computersSelection = [
+const computersAdSelection = [
   scissorsAd,
   spockAd,
   paperAd,
@@ -76,7 +88,7 @@ const computersSelection = [
   rockAd
 ]
 
-const playerItem = [
+const playersAdItem = [
   'scissors',
   'spock',
   'paper',
@@ -85,8 +97,10 @@ const playerItem = [
 ]
 
 const getRandomItem = (id) => {
-  const filterPlayersItems = playersItem.filter((elt, index) => index !== id);
-  const filteredItems = computerSelection.filter((elt, index) => index !== id);
+  console.log(id)
+  const filterPlayersItems = playersAdItem.filter((elt, index) => index !== id);
+  console.log(filterPlayersItems)
+  const filteredItems = computersAdSelection.filter((elt, index) => index !== id);
   const randomNum = Math.floor(Math.random() * filteredItems.length)
   const random = filteredItems[randomNum];
   return [random, filterPlayersItems[randomNum]];
@@ -99,10 +113,11 @@ const computerSelectMode = (node, type, conputerType) => {
   node.style.pointerEvents = 'none'; 
 
   setTimeout(() => { 
-    // if (type === 'rock') {
-    //   emptyCircleRock.style.display = 'none';
-    //   lower.style.paddingTop = '63px';
-    // }
+    if (type) {
+      empty_Circle.style.display = 'none';
+      node.classList.add('selected');
+      // pickAd.classList.add('selected');
+    }
     // else {
     //   emptyCircle.style.display = 'none';
     //   upper.style.paddingTop = '63px';
@@ -120,7 +135,7 @@ const computerSelectMode = (node, type, conputerType) => {
 
     play_Round(type, conputerType);
 
-  }, 500);
+  }, 7000);
 }
 
 
@@ -141,23 +156,24 @@ const play_Round = (userChoice, computerChoice) => {
 
 
  //increase user's score and store in the localStorage
-const increaseUserScore = userWin => {
-  var score = localStorage.getItem('score');
-  const storedScore = localStorage.getItem('score');
-  score = storedScore ? parseInt(storedScore) : 0;
+// const increaseUserScore = userWin => {
+//   var score = localStorage.getItem('score');
+//   const storedScore = localStorage.getItem('score');
+//   score = storedScore ? parseInt(storedScore) : 0;
 
-  if(userWin) {
-    score++
-  } else {
-    score--
-  }
+    
+//   if(userWin) {
+//     score++
+//   } else {
+//     score--
+//   }
   
-  localStorage.setItem('score', score.toString())
+//   localStorage.setItem('score', score.toString())
   
-  var userScore = window.document.querySelector('.num');
-  userScore.innerHTML = parseInt(score.toString());
-  score = parseInt(userScore.innerHTML);
-}
+//   var userScore = window.document.querySelector('.num');
+//   userScore.innerHTML = parseInt(score.toString());
+//   score = parseInt(userScore.innerHTML);
+// }
 
 
 
@@ -168,15 +184,26 @@ const determine_Winner = (userChoice, computerChoice) => {
   // const replayRoundLowerMobile = window.document.querySelector('.replay-round.m-sect');
   // const pick = window.document.querySelector('.pick');
   // const lowerList = ['rock']
-
   // replayRoundLower.style.marginLeft = '-35px'
   // replayRoundUpper.style.marginLeft = '35px'
-  // pick.style.gap = '320px' 
+  pickAd.classList.add('selected')
 
   if ((userChoice === "rock" && computerChoice === "scissors") ||
   (userChoice === "paper" && computerChoice === "rock") ||
-  (userChoice === "scissors" && computerChoice === "paper")) {
-    if(userChoice === "rock") lower.style.maxWidth = '938px'
+  (userChoice === "scissors" && computerChoice === "paper") || 
+  (userChoice === 'rock' && computerChoice === 'lizard') || 
+  (userChoice === 'lizard' && computerChoice === 'spock') || 
+  (userChoice === 'spock' && computerChoice === 'scissors') || 
+  (userChoice === 'scissors' && computerChoice === 'lizard') || 
+  (userChoice === 'lizard' && computerChoice === 'paper') ||
+  (userChoice === 'paper' && computerChoice === 'spock') ||
+  (userChoice === 'spock' && computerChoice === 'rock')) {
+    if(userChoice) playAdvanced.style.maxWidth = '938px'
+    playAdvanced.classList.add('selected')
+    window.document.querySelector('.replay_round').classList.add('show');
+    window.document.querySelector('.user_win').style.display = 'block';
+    window.document.querySelector('.user_lose').style.display = 'none';
+
     // const replaySect = lowerList.includes(userChoice) ? replayRoundLower: replayRoundUpper;
     // replaySect.classList.add('show');  
     // replaySect.querySelector('.user-win').style.display = 'block';
@@ -185,19 +212,13 @@ const determine_Winner = (userChoice, computerChoice) => {
     // replayRoundLowerMobile.classList.add('show');  
     // replayRoundLowerMobile.querySelector('.user-win').style.display = 'block';
     // replayRoundLowerMobile.querySelector('.user-lose').style.display = 'none';
-    console.log('User Win')
     return userChoice; //user wins
   } else {
-    // if(userChoice === "rock") lower.style.maxWidth = '938px'
-    // const replaySect = lowerList.includes(userChoice) ? replayRoundLower: replayRoundUpper;
-    // replaySect.classList.add('show');  
-    // replaySect.querySelector('.user-win').style.display = 'none';
-    // replaySect.querySelector('.user-lose').style.display = 'block';
-
-    // replayRoundLowerMobile.classList.add('show');  
-    // replayRoundLowerMobile.querySelector('.user-win').style.display = 'none';
-    // replayRoundLowerMobile.querySelector('.user-lose').style.display = 'block';
-    console.log('User lose')
+    // if(userChoice === "rock") 
+    playAdvanced.style.maxWidth = '938px'
+    window.document.querySelector('.replay_round').classList.add('show');
+    window.document.querySelector('.user_win').style.display = 'none';
+    window.document.querySelector('.user_lose').style.display = 'block';
     return computerChoice; //computer wins
   }
 }
@@ -205,41 +226,50 @@ const determine_Winner = (userChoice, computerChoice) => {
 
 
 scissorsAd.addEventListener('click', () => {
-  // emptyCircle.style.display = 'block';
+  empty_Circle.style.display = 'block';
+  scissorsAd.classList.add('active')
   ovalsResize(0);
   const [element, text] = getRandomItem(0);
-  computerSelectMode(element, 'paper', text)
-  // upper.appendChild(element);
+  computerSelectMode(element, 'scissors', text)
+  playAdvanced.appendChild(element);
 })
 
 spockAd.addEventListener('click', () => {
-  // emptyCircle.style.display = 'block';
+  empty_Circle.style.display = 'block';
+  spockAd.classList.add('active')
   ovalsResize(1);
   const [element, text] = getRandomItem(1);
-  computerSelectMode(element, 'paper', text)
-  // upper.appendChild(element);
+  computerSelectMode(element, 'spock', text)
+  playAdvanced.appendChild(element);
 })
 
 paperAd.addEventListener('click', () => {
-  // emptyCircle.style.display = 'block';
+  empty_Circle.style.display = 'block';
+  paperAd.classList.add('active')
   ovalsResize(2);
   const [element, text] = getRandomItem(2);
   computerSelectMode(element, 'paper', text)
-  // upper.appendChild(element);
+  playAdvanced.appendChild(element);
 })
 
 lizardAd.addEventListener('click', () => {
-  // emptyCircle.style.display = 'block';
+  empty_Circle.style.display = 'block';
+  lizardAd.classList.add('active')
   ovalsResize(3);
   const [element, text] = getRandomItem(3);
-  computerSelectMode(element, 'paper', text)
-  // upper.appendChild(element);
+  computerSelectMode(element, 'lizard', text)
+  playAdvanced.appendChild(element);
 })
 
 rockAd.addEventListener('click', () => {
-  // emptyCircle.style.display = 'block';
-  ovalsResize(4);
-  const [element, text] = getRandomItem(4);
-  computerSelectMode(element, 'paper', text)
-  // upper.appendChild(element);
+  empty_Circle.style.display = 'block'
+  rockAd.classList.add('active')
+  ovalsResize(4)
+  const [element, text] = getRandomItem(4)
+  computerSelectMode(element, 'rock', text)
+  playAdvanced.appendChild(element)
 })
+
+
+playAgainWinAd.addEventListener('click', () => window.location.reload())
+playAgainLoseAd.addEventListener('click', () => window.location.reload())
