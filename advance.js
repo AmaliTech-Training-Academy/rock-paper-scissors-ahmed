@@ -62,7 +62,7 @@ const ovalsResize = (item) => {
   playAdvanced.classList.add('selected');
   
   Object.keys(selectedItemDimension)?.forEach((elt, index) => {
-    console.log(ovals[index][item]);
+    // console.log(ovals[index][item]);
     ovals[index][item]?.classList?.add('selected');
     
   }); 

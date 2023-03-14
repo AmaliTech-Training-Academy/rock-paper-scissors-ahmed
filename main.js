@@ -101,11 +101,11 @@ const computerSelectionMode = (node, type, conputerType) => {
   setTimeout(() => { 
     if (type === 'rock') {
       emptyCircleRock.style.display = 'none';
-      lower.style.paddingTop = '50px';
+      // lower.style.paddingTop = '50px';
     }
     else {
       emptyCircle.style.display = 'none';
-      upper.style.paddingTop = '50px';
+      // upper.style.paddingTop = '50px';
     }
     node.style.display = 'block';
     const ovals = ['outer-oval', 'inner-oval1', 'inner-oval2', 'inner-oval3']
@@ -214,14 +214,27 @@ const determineWinner = (userChoice, computerChoice) => {
 //play round between user and computer
 const playRound = (userChoice, computerChoice) => {
   var playResult = determineWinner(userChoice, computerChoice)
+  // let roundsPlayed = 0
+
 
   if (playResult === userChoice) {
     increaseScore(true); // Increase the score if the user wins
   } else if (playResult === computerChoice) {
     increaseScore(false); // Decrease the score if the user loses
   }
+
+  
   selection.classList.add('media-select') //increase the width on click to make space for play again button
   selection.classList.add(`${userChoice}-mob`)
+
+  // roundsPlayed++;
+
+  // if (roundsPlayed === 5) {
+  //   endGame();
+  // } else {
+  //   playRound();
+  // }
+
  }
 
 //keep track of the score after the page refreshes
@@ -235,3 +248,117 @@ for(var i = 0; i < playAgainWin.length; i++) {
   playAgainWin[i].addEventListener("click", () => window.location.reload());
   playAgainLose[i].addEventListener("click", () => window.location.reload());
 }
+
+
+
+//leaderboard to keep track of scores of different users
+// let scores = JSON.parse(localStorage.getItem("scores")) || {};
+// let roundsPlayed = 0
+
+// function endGame() {
+//   let name = prompt("Enter your name:");
+//   let score = parseInt(prompt("Enter your score:"));
+
+//   if (name in scores) {
+//     scores[name] += score;
+//   } else {
+//     scores[name] = score;
+//   }
+
+//   // Call the updateLeaderboard function
+//   updateLeaderboard();
+// }
+
+
+// let leaderboardTable = document.getElementById("leaderboard");
+
+// function updateLeaderboard() {
+//   let sortedScores = Object.entries(scores)
+//     .sort((a, b) => b[1] - a[1]);
+
+//   // Clear existing rows
+//   leaderboardTable.innerHTML = "";
+
+//   // Populate the table with the sorted scores
+//   sortedScores.forEach((entry, index) => {
+//     let row = leaderboardTable.insertRow(0);
+//     let rankCell = row.insertCell(0);
+//     let nameCell = row.insertCell(1);
+//     let scoreCell = row.insertCell(2);
+
+//     rankCell.textContent = index + 1;
+//     nameCell.textContent = entry[0];
+//     scoreCell.textContent = entry[1];
+//   });
+
+//   // Save the scores to local storage
+//   localStorage.setItem("scores", JSON.stringify(scores));
+
+//   // Show the leaderboard table
+//   leaderboardTable.style.display = "table";
+// }
+
+
+// // Call the updateLeaderboard function once when the page loads
+// // updateLeaderboard();
+
+
+let scores = JSON.parse(localStorage.getItem("scores")) || {};
+
+let name = prompt("Enter your name:");
+let score = parseInt(prompt("Enter your score:"));
+
+if (name in scores) {
+  scores[name] += score;
+} else {
+  scores[name] = score;
+}
+
+let leaderboardTable = document.getElementById("leaderboardTable");
+
+function updateLeaderboard() {
+  let sortedScores = Object.entries(scores)
+    .sort((a, b) => b[1] - a[1]);
+
+  // Clear existing rows
+  let tbody = leaderboardTable.querySelector('tbody')
+  tbody.innerHTML = ""
+
+  // Populate the table with the sorted scores
+  let rank = 1;
+  sortedScores.forEach((entry) => {
+    let row = document.createElement('tr');
+    let rankCell = document.createElement('td');
+    let nameCell = document.createElement('td');
+    let scoreCell = document.createElement('td');
+
+    rankCell.textContent = rank;
+    nameCell.textContent = entry[0];
+    scoreCell.textContent = entry[1];
+
+    row.appendChild(rankCell);
+    row.appendChild(nameCell);
+    row.appendChild(scoreCell);
+
+    tbody.appendChild(row);
+
+    rank++;
+  });
+  
+  // Save the scores to local storage
+  localStorage.setItem("scores", JSON.stringify(scores));
+  
+  // Show the leaderboard table
+  leaderboardTable.style.display = "table";
+}
+
+leaderboardButton.addEventListener("click", () => {
+  let leaderboardTable = document.querySelector("#leaderboardTable");
+
+  if (leaderboardTable.style.display === "none") {
+    updateLeaderboard();
+    leaderboardTable.style.display = "table";
+  } else {
+    leaderboardTable.style.display = "none";
+  }
+});
