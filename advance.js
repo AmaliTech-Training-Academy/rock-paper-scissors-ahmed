@@ -135,6 +135,9 @@ const play_Round = (userChoice, computerChoice) => {
   } else if (playResult === computerChoice) {
     increaseUserScore(false); // Decrease the score if the user loses
   }
+
+  localStorage.setItem('roundsPlayed', Number(localStorage.getItem('roundsPlayed') || 0) + 1);
+
  }
 
 
@@ -244,9 +247,6 @@ rockAd.addEventListener('click', () => {
 const advanced = document.querySelector('.advanced');
 const content1 = document.querySelector('.selection');
 const content2 = document.querySelector('.play-advanced');
-// const content1Score = localStorage.getItem('score') ? parseInt(localStorage.getItem('score')) : 0;
-// let content2Score = 0;
-
 
 // Retrieve the current content state from local storage
 let currentContent = localStorage.getItem('currentContent');
@@ -257,57 +257,99 @@ if (!currentContent || (currentContent !== 'content1' && currentContent !== 'con
   localStorage.setItem('currentContent', currentContent);
 }
 
-// let score = parseInt(localStorage.getItem('score')) || 0; // Initialize score1 to 0 if it doesn't exist in localStorage
-// let score1 = parseInt(localStorage.getItem('score1')) || 0; // Initialize score2 to 0 if it doesn't exist in localStorage
-
-// Set the initial content based on the stored state
 if (currentContent === 'content1') {
   content1.style.display = 'block';
   content2.style.display = 'none';
-  // var userScore = window.document.querySelector('.num');
-  // userScore.innerHTML = content1Score;
 } else {
   content1.style.display = 'none';
   content2.style.display = 'flex';
-  // var userScore = window.document.querySelector('.num');
-  // userScore.innerHTML = content2Score;
 }
-
 
 advanced.addEventListener('click', () => {
   if (currentContent === 'content1') {
     currentContent = 'content2';
     content1.style.display = 'none';
     content2.style.display = 'flex';
-    // var userScore = window.document.querySelector('.num');
-    // userScore.innerHTML = content2Score;
   } else {
     currentContent = 'content1';
     content1.style.display = 'block';
     content2.style.display = 'none';
-    // var userScore = window.document.querySelector('.num');
-    // userScore.innerHTML = content1Score;
   }
 
   localStorage.setItem('currentContent', currentContent); // Store the updated content state in local storage
 })
 
-
-// playAgainWinAd.addEventListener('click', () => {
-//   if (currentContent === 'content1') {
-//     content1Score++;
-//     localStorage.setItem('score', content1Score);
-//     var userScore = window.document.querySelector('.num');
-//     userScore.innerHTML = content1Score;
-//   } else {
-//     content2Score++;
-//     localStorage.setItem('content2Score', content2Score);
-//     var userScore = window.document.querySelector('.num');
-//     userScore.innerHTML = content2Score;
-//   }
-// })
-
 playAgainWinAd.addEventListener('click', () => window.location.reload())
 playAgainLoseAd.addEventListener('click', () => window.location.reload())
 
+
+//keep track of the score after the page refreshes
+window.onload = () => {
+  const numElement = window.document.querySelector('.num')
+  numElement.innerText = localStorage.getItem('score')
+  const roundsPlayed = localStorage.getItem('roundsPlayed') || 0;
+  // localStorage.setItem('roundsPlayed', Number(0))
+
+  let scores = JSON.parse(localStorage.getItem("scores")) || {};
+  if (Number(roundsPlayed) === 5) {
+    let name = prompt("Enter your name:");
+    const currentScore = Number(localStorage.getItem('score'))
+
+    if (name in scores) {
+      scores[name] += currentScore;
+    } else {
+      scores[name] = currentScore;
+    }
+    
+    localStorage.setItem('scores', JSON.stringify(scores))
+    localStorage.setItem("leaderboardScore", Number(localStorage.getItem("leaderboardScore") || 0) + currentScore)
+    localStorage.setItem('score', Number(0))
+    var userScore = window.document.querySelector('.num');
+    userScore.innerText = 0
+
+    localStorage.setItem('roundsPlayed', 0)
+  }
+
+}
+
+
+let leaderboardTableAd = document.getElementById("leaderboardTable");
+    
+function updateLeaderboard() {
+  let scores = JSON.parse(localStorage.getItem("scores"));
+  let sortedScores = Object.entries(scores || {})
+    .filter(([name, score]) => typeof score === "number")
+    .sort((a, b) => b[1] - a[1]);
+
+  // Clear existing rows
+  let tbody = leaderboardTableAd.querySelector('tbody')
+  tbody.innerHTML = ""
+
+  // Populate the table with the sorted scores
+  let rank = 1;
+  sortedScores.slice(0,5).forEach((entry) => {
+    let row = document.createElement('tr');
+    let rankCell = document.createElement('td');
+    let nameCell = document.createElement('td');
+    let scoreCell = document.createElement('td');
+
+    rankCell.textContent = rank;
+    nameCell.textContent = entry[0];
+    scoreCell.textContent = entry[1];
+
+    row.appendChild(rankCell);
+    row.appendChild(nameCell);
+    row.appendChild(scoreCell);
+
+    tbody.appendChild(row);
+
+    rank++;
+  });
+  
+  // Save the scores to local storage
+  localStorage.setItem("scores", JSON.stringify(scores));
+  
+  // Show the leaderboard table
+  leaderboardTableAd.style.display = "table";
+}
 

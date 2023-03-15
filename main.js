@@ -182,7 +182,7 @@ const determineWinner = (userChoice, computerChoice) => {
 
   replayRoundLower.style.marginLeft = '-35px'
   replayRoundUpper.style.marginLeft = '35px'
-  pick.style.gap = '320px' 
+  pick.classList.add('active')
 
   if ((userChoice === "rock" && computerChoice === "scissors") ||
   (userChoice === "paper" && computerChoice === "rock") ||
@@ -226,7 +226,7 @@ const playRound = (userChoice, computerChoice) => {
   selection.classList.add(`${userChoice}-mob`)
  
   localStorage.setItem('roundsPlayed', Number(localStorage.getItem('roundsPlayed') || 0) + 1);
-  // localStorage.setItem('roundsPlayed', Number(0))
+  localStorage.setItem('roundsPlayed', Number(0))
  }
 
 //keep track of the score after the page refreshes
@@ -259,7 +259,6 @@ window.onload = () => {
 }
 
 
-
 //play another round from the beginning
 for(var i = 0; i < playAgainWin.length; i++) {
   playAgainWin[i].addEventListener("click", () => window.location.reload());
@@ -272,6 +271,7 @@ let leaderboardTable = document.getElementById("leaderboardTable");
 function updateLeaderboard() {
   let scores = JSON.parse(localStorage.getItem("scores"));
   let sortedScores = Object.entries(scores || {})
+    .filter(([name, score]) => typeof score === "number")
     .sort((a, b) => b[1] - a[1]);
 
   // Clear existing rows
@@ -280,7 +280,6 @@ function updateLeaderboard() {
 
   // Populate the table with the sorted scores
   let rank = 1;
-  console.log(sortedScores.slice(0,5))
   sortedScores.slice(0,5).forEach((entry) => {
     let row = document.createElement('tr');
     let rankCell = document.createElement('td');
@@ -308,12 +307,16 @@ function updateLeaderboard() {
 }
 
 leaderboardButton.addEventListener("click", () => {
+  let leaderboard = document.querySelector('.leaderboard')
   let leaderboardTable = document.querySelector("#leaderboardTable");
 
   if (leaderboardTable.style.display === "none") {
     updateLeaderboard();
     leaderboardTable.style.display = "table";
+    leaderboard.style.display = "flex"
+    leaderboardButton.style.zIndex = '50'
   } else {
     leaderboardTable.style.display = "none";
+    leaderboard.style.display = 'none'
   }
 });

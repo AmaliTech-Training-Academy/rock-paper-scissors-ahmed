@@ -200,40 +200,46 @@
     </div>
     <div class="btn">
       <button class="rule-button" data-modal-target="#modal" id="addRules">Rules</button>
+     
+    </div>
+    <button id="leaderboardButton">leaderboard</button>
+    <div id="overlay">
       <div class="modal" id="modal">
         <div class="modal-header">
           <span>Rules</span>
-          <img src="./images/icon-close.svg" alt="close" data-close-button>
+          <img src="./images/icon-close.svg" alt="close" data-close-button class="close-btn">
         </div>
         <div class="modal-content">
           <img src="./images/image-rules.svg" alt="rules">
         </div>
       </div>
-      <div id="overlay"></div>
-      <button onClick="changeButtonText()" class="advanced" value="Advance" data-target="#advance" id="addAdvance">Advance</button>
       <div class="advance" id="advanced">
         <div class="modal-header">
           <span>Rules</span>
-          <img src="./images/icon-close.svg" alt="close" data-close>
+          <img src="./images/icon-close.svg" alt="close" data-close class="close-btn">
         </div>
         <div class="modal-content1">
           <img class="bonus" src="./images/image-rules-bonus.svg" alt="rules">
         </div>
       </div>
-    </div>
+      </div>
+    <button onClick="changeButtonText()" class="advanced" value="Advance" data-target="#advance" id="addAdvance">Advance</button>
+    
 
-    <button id="leaderboardButton">leaderboard</button>
-    <table id="leaderboardTable">
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Name</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
+    <div class="leaderboard">
+      <table id="leaderboardTable">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </div>
     </table>
+    <!-- <div id="overlay1"></div> -->
 
   </main>
 </body>
