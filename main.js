@@ -214,7 +214,6 @@ const determineWinner = (userChoice, computerChoice) => {
 //play round between user and computer
 const playRound = (userChoice, computerChoice) => {
   var playResult = determineWinner(userChoice, computerChoice)
-  // let roundsPlayed = 0
 
 
   if (playResult === userChoice) {
@@ -223,25 +222,43 @@ const playRound = (userChoice, computerChoice) => {
     increaseScore(false); // Decrease the score if the user loses
   }
 
-  
   selection.classList.add('media-select') //increase the width on click to make space for play again button
   selection.classList.add(`${userChoice}-mob`)
-
-  // roundsPlayed++;
-
-  // if (roundsPlayed === 5) {
-  //   endGame();
-  // } else {
-  //   playRound();
-  // }
-
+ 
+  localStorage.setItem('roundsPlayed', Number(localStorage.getItem('roundsPlayed') || 0) + 1);
+  // localStorage.setItem('roundsPlayed', Number(0))
  }
 
 //keep track of the score after the page refreshes
 window.onload = () => {
   const numElement = window.document.querySelector('.num')
   numElement.innerText = localStorage.getItem('score')
+  const roundsPlayed = localStorage.getItem('roundsPlayed') || 0;
+  // localStorage.setItem('roundsPlayed', Number(0))
+
+  let scores = JSON.parse(localStorage.getItem("scores")) || {};
+  if (Number(roundsPlayed) === 5) {
+    let name = prompt("Enter your name:");
+    const currentScore = Number(localStorage.getItem('score'))
+
+    if (name in scores) {
+      scores[name] += currentScore;
+    } else {
+      scores[name] = currentScore;
+    }
+    
+    localStorage.setItem('scores', JSON.stringify(scores))
+    localStorage.setItem("leaderboardScore", Number(localStorage.getItem("leaderboardScore") || 0) + currentScore)
+    localStorage.setItem('score', Number(0))
+    var userScore = window.document.querySelector('.num');
+    userScore.innerText = 0
+
+    localStorage.setItem('roundsPlayed', 0)
+  }
+
 }
+
+
 
 //play another round from the beginning
 for(var i = 0; i < playAgainWin.length; i++) {
@@ -250,74 +267,11 @@ for(var i = 0; i < playAgainWin.length; i++) {
 }
 
 
-
-//leaderboard to keep track of scores of different users
-// let scores = JSON.parse(localStorage.getItem("scores")) || {};
-// let roundsPlayed = 0
-
-// function endGame() {
-//   let name = prompt("Enter your name:");
-//   let score = parseInt(prompt("Enter your score:"));
-
-//   if (name in scores) {
-//     scores[name] += score;
-//   } else {
-//     scores[name] = score;
-//   }
-
-//   // Call the updateLeaderboard function
-//   updateLeaderboard();
-// }
-
-
-// let leaderboardTable = document.getElementById("leaderboard");
-
-// function updateLeaderboard() {
-//   let sortedScores = Object.entries(scores)
-//     .sort((a, b) => b[1] - a[1]);
-
-//   // Clear existing rows
-//   leaderboardTable.innerHTML = "";
-
-//   // Populate the table with the sorted scores
-//   sortedScores.forEach((entry, index) => {
-//     let row = leaderboardTable.insertRow(0);
-//     let rankCell = row.insertCell(0);
-//     let nameCell = row.insertCell(1);
-//     let scoreCell = row.insertCell(2);
-
-//     rankCell.textContent = index + 1;
-//     nameCell.textContent = entry[0];
-//     scoreCell.textContent = entry[1];
-//   });
-
-//   // Save the scores to local storage
-//   localStorage.setItem("scores", JSON.stringify(scores));
-
-//   // Show the leaderboard table
-//   leaderboardTable.style.display = "table";
-// }
-
-
-// // Call the updateLeaderboard function once when the page loads
-// // updateLeaderboard();
-
-
-let scores = JSON.parse(localStorage.getItem("scores")) || {};
-
-let name = prompt("Enter your name:");
-let score = parseInt(prompt("Enter your score:"));
-
-if (name in scores) {
-  scores[name] += score;
-} else {
-  scores[name] = score;
-}
-
 let leaderboardTable = document.getElementById("leaderboardTable");
-
+    
 function updateLeaderboard() {
-  let sortedScores = Object.entries(scores)
+  let scores = JSON.parse(localStorage.getItem("scores"));
+  let sortedScores = Object.entries(scores || {})
     .sort((a, b) => b[1] - a[1]);
 
   // Clear existing rows
@@ -326,7 +280,8 @@ function updateLeaderboard() {
 
   // Populate the table with the sorted scores
   let rank = 1;
-  sortedScores.forEach((entry) => {
+  console.log(sortedScores.slice(0,5))
+  sortedScores.slice(0,5).forEach((entry) => {
     let row = document.createElement('tr');
     let rankCell = document.createElement('td');
     let nameCell = document.createElement('td');
