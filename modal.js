@@ -1,8 +1,8 @@
-const openRules = window.document.querySelector('[data-modal-target]'); //opens rules modal
-const closeRules = window.document.querySelector('[data-close-button]'); //closes rules modal
+const openRules = window.document.querySelector('[data-modal-target]'); 
+const closeRules = window.document.querySelector('[data-close-button]'); 
 const overlay = window.document.querySelector('#overlay');
-const modal = window.document.querySelector('#modal'); // gets the modal
-const advance = window.document.querySelector('#advanced'); // gets the modal
+const modal = window.document.querySelector('#modal'); 
+const advance = window.document.querySelector('#advanced'); 
 const openAdvanced = window.document.querySelector('[data-target]')
 const closeAdvanced = window.document.querySelector('[data-close]')
 const playAdvance = window.document.querySelector('.play-advanced')
@@ -15,7 +15,6 @@ openRules.addEventListener('click', () => openModal());
 closeRules.addEventListener('click', () => closeModal());
 
 const openModal = () => {
-
   if(selection.style.display === 'none') {
     overlay.classList.add('active');
     advance.classList.add('active');

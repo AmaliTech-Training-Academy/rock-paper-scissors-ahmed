@@ -101,11 +101,9 @@ const computerSelectionMode = (node, type, conputerType) => {
   setTimeout(() => { 
     if (type === 'rock') {
       emptyCircleRock.style.display = 'none';
-      // lower.style.paddingTop = '50px';
     }
     else {
       emptyCircle.style.display = 'none';
-      // upper.style.paddingTop = '50px';
     }
     node.style.display = 'block';
     const ovals = ['outer-oval', 'inner-oval1', 'inner-oval2', 'inner-oval3']
@@ -226,15 +224,14 @@ const playRound = (userChoice, computerChoice) => {
   selection.classList.add(`${userChoice}-mob`)
  
   localStorage.setItem('roundsPlayed', Number(localStorage.getItem('roundsPlayed') || 0) + 1);
-  localStorage.setItem('roundsPlayed', Number(0))
  }
 
+ 
 //keep track of the score after the page refreshes
 window.onload = () => {
   const numElement = window.document.querySelector('.num')
   numElement.innerText = localStorage.getItem('score')
   const roundsPlayed = localStorage.getItem('roundsPlayed') || 0;
-  // localStorage.setItem('roundsPlayed', Number(0))
 
   let scores = JSON.parse(localStorage.getItem("scores")) || {};
   if (Number(roundsPlayed) === 5) {
@@ -268,7 +265,7 @@ for(var i = 0; i < playAgainWin.length; i++) {
 
 let leaderboardTable = document.getElementById("leaderboardTable");
     
-function updateLeaderboard() {
+const updateLeaderboard = () => {
   let scores = JSON.parse(localStorage.getItem("scores"));
   let sortedScores = Object.entries(scores || {})
     .filter(([name, score]) => typeof score === "number")

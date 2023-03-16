@@ -62,7 +62,6 @@ const ovalsResize = (item) => {
   playAdvanced.classList.add('selected');
   
   Object.keys(selectedItemDimension)?.forEach((elt, index) => {
-    // console.log(ovals[index][item]);
     ovals[index][item]?.classList?.add('selected');
     
   }); 
@@ -139,7 +138,6 @@ const play_Round = (userChoice, computerChoice) => {
   localStorage.setItem('roundsPlayed', Number(localStorage.getItem('roundsPlayed') || 0) + 1);
 
  }
-
 
 
  //increase user's score and store in the localStorage
@@ -266,6 +264,7 @@ if (currentContent === 'content1') {
 }
 
 advanced.addEventListener('click', () => {
+  var btn = document.getElementById("addAdvance");
   if (currentContent === 'content1') {
     currentContent = 'content2';
     content1.style.display = 'none';
@@ -288,7 +287,6 @@ window.onload = () => {
   const numElement = window.document.querySelector('.num')
   numElement.innerText = localStorage.getItem('score')
   const roundsPlayed = localStorage.getItem('roundsPlayed') || 0;
-  // localStorage.setItem('roundsPlayed', Number(0))
 
   let scores = JSON.parse(localStorage.getItem("scores")) || {};
   if (Number(roundsPlayed) === 5) {
@@ -315,7 +313,7 @@ window.onload = () => {
 
 let leaderboardTableAd = document.getElementById("leaderboardTable");
     
-function updateLeaderboard() {
+const updateLeaderboard = () => {
   let scores = JSON.parse(localStorage.getItem("scores"));
   let sortedScores = Object.entries(scores || {})
     .filter(([name, score]) => typeof score === "number")
