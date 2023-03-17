@@ -313,7 +313,7 @@ window.onload = () => {
 
 let leaderboardTableAd = document.getElementById("leaderboardTable");
     
-const updateLeaderboard = () => {
+const updateLeaderBoard = () => {
   let scores = JSON.parse(localStorage.getItem("scores"));
   let sortedScores = Object.entries(scores || {})
     .filter(([name, score]) => typeof score === "number")
