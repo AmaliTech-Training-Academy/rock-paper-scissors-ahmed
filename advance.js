@@ -258,21 +258,24 @@ if (!currentContent || (currentContent !== 'content1' && currentContent !== 'con
 if (currentContent === 'content1') {
   content1.style.display = 'block';
   content2.style.display = 'none';
+  advanced.innerText = 'Advance'
 } else {
   content1.style.display = 'none';
   content2.style.display = 'flex';
+  advanced.innerText = 'Main'
 }
 
 advanced.addEventListener('click', () => {
-  var btn = document.getElementById("addAdvance");
   if (currentContent === 'content1') {
     currentContent = 'content2';
     content1.style.display = 'none';
     content2.style.display = 'flex';
+    advanced.innerText = "Main";
   } else {
     currentContent = 'content1';
     content1.style.display = 'block';
     content2.style.display = 'none';
+    advanced.innerText = "Advance";
   }
 
   localStorage.setItem('currentContent', currentContent); // Store the updated content state in local storage
@@ -313,7 +316,7 @@ window.onload = () => {
 
 let leaderboardTableAd = document.getElementById("leaderboardTable");
     
-const updateLeaderboard = () => {
+const updateLeaderBoard = () => {
   let scores = JSON.parse(localStorage.getItem("scores"));
   let sortedScores = Object.entries(scores || {})
     .filter(([name, score]) => typeof score === "number")

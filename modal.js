@@ -60,21 +60,6 @@ const closeAdvance = () => {
   overlay.classList.remove('active')
 }
 
-// change button text on click
-const changeButtonText = () => {
-  var btn = document.getElementById("addAdvance");
-  if (btn.value == "Advance") {
-    btn.value = "Main";
-    btn.innerHTML = "Main";
-    // localStorage.setItem('buttonText', 'Main')
-  } else {
-    btn.value = "Advance";
-    btn.innerHTML = "Advance";
-    // localStorage.setItem('buttonText', 'Advance')
-  }
-}
-
-
 
 
 
